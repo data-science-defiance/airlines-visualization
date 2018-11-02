@@ -18,15 +18,23 @@ cur = conn.cursor()
 
 # Query to get all flights in Hawaii
 cur.execute('''
-    SELECT SUM(passengers) as TOTAL_PASSENGERS, SUM(departures_performed) AS DEPARTURES, ORIGIN, DEST
+    SELECT SUM(departures_performed) as departures, 
+        SUM(passengers) as pass_sum, 
+        origin, 
+        oa.latitude as origin_lat, 
+        oa.longitude as origin_long, 
+        dest, 
+        da.latitude as dest_lat, 
+        da.longitude as dest_long
     FROM ics484.routes
-    WHERE (ORIGIN_STATE_ABR = 'HI' OR DEST_STATE_ABR = 'HI') AND passengers > 0
-    GROUP BY ORIGIN, DEST
-    ORDER BY ORIGIN;
+    JOIN ics484.airports as oa on origin=oa.iata
+    JOIN ics484.airports as da on dest=da.iata
+    WHERE (ORIGIN_STATE_ABR = 'HI' OR DEST_STATE_ABR = 'HI') AND passengers > 0 AND departures_performed > 10
+    GROUP BY origin, dest, oa.latitude, oa.longitude, da.latitude, da.longitude
+    ORDER BY departures desc
 ''')
 df = pd.DataFrame(cur.fetchall())
 df.columns = [desc[0] for desc in cur.description]
-# df = df[df['departures'] > 10]
 print(df)
 print(df.columns)
 df.to_json('data/HawaiiFlights.json')
