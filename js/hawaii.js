@@ -15,7 +15,7 @@ Plotly.d3.json('data/HNLFlights.json', function (hawaiiJson) {
     const flightsTrace = {
         x: destinations,
         y: flights,
-        text: destinations,
+        text: flights,
         textposition: 'auto',
         hoverinfo: 'none',
         name: 'Destinations from HNL',
@@ -43,7 +43,7 @@ Plotly.d3.json('data/HNLFlights.json', function (hawaiiJson) {
     const passengersTrace = {
         x: destinations,
         y: passengers,
-        text: destinations,
+        text: passengers,
         textposition: 'auto',
         hoverinfo: 'none',
         name: 'Destinations from HNL',
