@@ -15,6 +15,11 @@ cur = conn.cursor()
 #     SELECT * 
 #     FROM ics484.routes
 # ''')
+# df = pd.DataFrame(cur.fetchall())
+# df.columns = [desc[0] for desc in cur.description]
+# print(df)
+# print(df.columns)
+# df.to_json('data/AllFlights.json', orient='columns')
 
 # Query to get all flights in Hawaii
 cur.execute('''
@@ -37,7 +42,7 @@ df = pd.DataFrame(cur.fetchall())
 df.columns = [desc[0] for desc in cur.description]
 print(df)
 print(df.columns)
-df.to_json('data/HawaiiFlights.json', orient='columns')
+df.to_json('data/HawaiiFlights.json', orient='records')
 
 # Getting Airports
 cur.execute('''
@@ -50,7 +55,7 @@ df_airports.columns = [desc[0] for desc in cur.description]
 # print(df_airports.columns)
 
 df = df.loc[df['origin'] == 'HNL']
-print(df)
+df.to_json('data/HNLFlights.json', orient='records')
 
 # df = df.set_index('origin').join(df_airports.set_index('iata')).reset_index().rename(columns={'index': 'origin'})
 # print(df)
