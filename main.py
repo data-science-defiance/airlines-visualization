@@ -37,7 +37,7 @@ df = pd.DataFrame(cur.fetchall())
 df.columns = [desc[0] for desc in cur.description]
 print(df)
 print(df.columns)
-df.to_json('data/HawaiiFlights.json')
+df.to_json('data/HawaiiFlights.json', orient='columns')
 
 # Getting Airports
 cur.execute('''
@@ -46,8 +46,11 @@ cur.execute('''
 ''')
 df_airports = pd.DataFrame(cur.fetchall())
 df_airports.columns = [desc[0] for desc in cur.description]
-print(df_airports)
-print(df_airports.columns)
+# print(df_airports)
+# print(df_airports.columns)
+
+df = df.loc[df['origin'] == 'HNL']
+print(df)
 
 # df = df.set_index('origin').join(df_airports.set_index('iata')).reset_index().rename(columns={'index': 'origin'})
 # print(df)
