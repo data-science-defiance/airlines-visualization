@@ -8,6 +8,10 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(map);
 
 
+function airportRadiusScaling(numFlights, maxFlights=1) {
+    return numFlights / maxFlights * 10000;
+}
+
 function flightPathLineScaling(numPassengers, maxPassengers=1) {
     return numPassengers / maxPassengers * 2 + 0.25
 }
@@ -37,14 +41,23 @@ Plotly.d3.json('data/HNLFlights.json', function (json) {
             'color': 'red',
             'fillColor': '#f03',
             'fillOpacity': 0.5,
-        }).addTo(map);
+            'radius': 1000,
+        }).addTo(map).bindPopup(`Airport: ${flightPath['origin']}`);;
+
+        // L.marker(originCoordinate)
+        //     .addTo(map)
+        //     .bindPopup(`Airport: ${flightPath['origin']}`);
 
         L.circle(destCoordinate, {
             'color': 'green',
             'fillColor': '#98fb98',
             'fillOpacity': 0.5,
-            'radius': flightPath['departures'] / maxFlights * 10000,
-        }).addTo(map);
+            'radius': airportRadiusScaling(flightPath['departures'], maxFlights=maxFlights),
+        }).addTo(map).bindPopup(`Airport: ${flightPath['dest']}`);
+
+        // L.marker(destCoordinate)
+        //     .addTo(map)
+        //     .bindPopup(`Airport: ${flightPath['dest']}`);
 
         L.polyline([originCoordinate, destCoordinate], {
             'color': 'white',
