@@ -1,0 +1,23 @@
+{
+  "name": "airlines-visualization",
+  "version": "1.0.0",
+  "description": "Interactive visualization of the Bureau of Transportation Statistics for Airlines and Airports",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/data-science-defiance/airlines-visualization.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/data-science-defiance/airlines-visualization/issues"
+  },
+  "homepage": "https://github.com/data-science-defiance/airlines-visualization#readme",
+  "devDependencies": {
+    "eslint": "^5.9.0"
+  }
+}
