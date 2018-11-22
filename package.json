@@ -1,23 +1,31 @@
 {
   "name": "airlines-visualization",
-  "version": "1.0.0",
-  "description": "Interactive visualization of the Bureau of Transportation Statistics for Airlines and Airports",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://data-science-defiance.github.io/airlines-visualization/",
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/data-science-defiance/airlines-visualization.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/data-science-defiance/airlines-visualization/issues"
-  },
-  "homepage": "https://github.com/data-science-defiance/airlines-visualization#readme",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "eslint": "^5.9.0"
+    "gh-pages": "^2.0.1"
   }
 }

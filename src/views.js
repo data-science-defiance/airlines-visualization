@@ -2,6 +2,38 @@
 
 const e = React.createElement;
 
+import React from 'react'
+import Select from 'react-select'
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
+
+class FlightSelect extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            'origin': 'Honolulu',
+            'dest': 'California',
+        };
+
+    }
+
+    render() {
+        return (
+            <Select options={options} />
+        )
+    }
+}
+
+ReactDOM.render(
+    <FlightSelect />,
+    document.getElementById('flight-select')
+);
+
 class LikeButton extends React.Component {
 
     constructor(props) {
@@ -42,7 +74,7 @@ class Clock extends React.Component {
             1000
         );
     }
-    
+
     // Special React method: Calls when the component is removed from the DOM
     componentWillUnmount() {
         clearInterval(this.timerID);
