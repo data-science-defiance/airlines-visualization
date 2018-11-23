@@ -21,17 +21,19 @@ class FlightMap extends React.Component {
     const zoom = 4;
 
     return (
-      <div>
+      // <div>
         <Map center={position} zoom={zoom}>
           <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}"
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            id="mapbox.dark"
+            accessToken="pk.eyJ1Ijoic2Vhbnl0YWsiLCJhIjoiY2ptOTFzYnJlMDd4dzNram9wejV6NWUzNCJ9.Pj7WJobAaBWN7naYDiw5XA"
           />
           <Marker position={position}>
             <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
           </Marker>
         </Map>
-      </div>
+      // </div>
     );
   }
 }
