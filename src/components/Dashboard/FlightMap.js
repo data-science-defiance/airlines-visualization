@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import { Map, Marker, Popup, TileLayer, Circle } from 'react-leaflet'
 import FlightSelect from './FlightSelect';
 
 let options = ['Hawaii', 'California', 'Alaska', 'Maine'].sort();
@@ -16,12 +16,32 @@ class FlightMap extends React.Component {
     }
   }
 
+  createAirportMarkers = () => {
+    const airports = [];
+
+    for (let i = 0; i < this.props.data.length; i++) {
+      const flightPath = this.props.data[i];
+      const originCoordinate = [flightPath['origin_lat'], flightPath['origin_long']];
+
+      airports.push(
+        <Circle
+          key={i}
+          center={originCoordinate}
+          radius={1000}
+          fillColor='#f08080'
+          fillOpacity={0.5}>
+        </Circle>);
+    }
+
+    return airports;
+  }
+
   render() {
     const position = [37.8, -96];
     const zoom = 4;
 
     return (
-      // <div>
+      <div>
         <Map center={position} zoom={zoom}>
           <TileLayer
             url="https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}"
@@ -29,11 +49,9 @@ class FlightMap extends React.Component {
             id="mapbox.dark"
             accessToken="pk.eyJ1Ijoic2Vhbnl0YWsiLCJhIjoiY2ptOTFzYnJlMDd4dzNram9wejV6NWUzNCJ9.Pj7WJobAaBWN7naYDiw5XA"
           />
-          <Marker position={position}>
-            <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-          </Marker>
+          {this.createAirportMarkers()}
         </Map>
-      // </div>
+      </div>
     );
   }
 }
