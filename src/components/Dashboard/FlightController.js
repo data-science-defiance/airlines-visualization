@@ -14,16 +14,16 @@ class FlightController extends React.Component {
 
   setOrigin = (origin) => {
     this.setState({
-      origin: origin,
+      origin: origin.label,
     });
-    this.props.originCallback(origin);
+    this.props.originCallback(origin.value);
   }
 
   setDest = (dest) => {
     this.setState({
-      dest: dest,
+      dest: dest.label,
     });
-    this.props.destCallback(dest);
+    this.props.destCallback(dest.value);
   }
 
   render() {
@@ -38,14 +38,14 @@ class FlightController extends React.Component {
               value={this.state.origin}
               placeholder={this.state.origin}
               onChange={(evt) => this.setOrigin(evt)}
-              options={this.props.states} />
+              options={this.props.statesData} />
             <br />
             <h6>Destination:</h6>
             <Select
               value={this.state.dest}
               placeholder={this.state.dest}
               onChange={(evt) => this.setDest(evt)}
-              options={this.props.states} />
+              options={this.props.statesData} />
           </CardBody>
         </Card>
       </div>

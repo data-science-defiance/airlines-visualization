@@ -13,10 +13,19 @@ import * as serviceWorker from './serviceWorker';
 
 import Plotly from 'plotly';
 import HNLFlights from './assets/HNLFlights';
+import AllFlights from './assets/AllFlights';
+import AllStates from './assets/AllStates';
+import USAFlights from './assets/USAFlights';
+
+import States from './assets/States';
+
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render(<Controller />, document.getElementById('flight-select'));
-ReactDOM.render(<FlightDashboard flightData={HNLFlights} />, document.getElementById('flight-dashboard'));
+ReactDOM.render(
+    <FlightDashboard flightData={USAFlights} statesData={States} />, 
+    document.getElementById('flight-dashboard')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

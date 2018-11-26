@@ -1,19 +1,11 @@
 import React from 'react';
-import { Map, Marker, Popup, TileLayer, Circle, Polyline } from 'react-leaflet'
+import { Map, Marker, Popup, TileLayer, Circle, Polyline, CircleMarker, LayerGroup } from 'react-leaflet'
 import FlightSelect from './FlightController';
-
-let options = ['Hawaii', 'California', 'Alaska', 'Maine'].sort();
-const states = options.map((val) => {
-  return { label: val, value: val }
-});
 
 class FlightMap extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
   }
 
   createAirportMarkers = () => {
@@ -62,7 +54,7 @@ class FlightMap extends React.Component {
           key={i}
           positions={[originCoordinate, destCoordinate]}
           color="white"
-          weight={1}>
+          weight={0.25}>
         </Polyline>);
     }
 
@@ -81,9 +73,14 @@ class FlightMap extends React.Component {
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
             id="mapbox.dark"
             accessToken="pk.eyJ1Ijoic2Vhbnl0YWsiLCJhIjoiY2ptOTFzYnJlMDd4dzNram9wejV6NWUzNCJ9.Pj7WJobAaBWN7naYDiw5XA"
+            preferCanvas={true}
           />
-          {this.createAirportMarkers()}
-          {this.createFlightPaths()}
+          <LayerGroup>
+            {this.createAirportMarkers()}
+          </LayerGroup>
+          <LayerGroup>
+            {this.createFlightPaths()}
+          </LayerGroup>
         </Map>
       </div>
     );
