@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 // import App from './components/App';
 // import Controller from './components/Dashboard/FlightController';
 import FlightDashboard from './components/Dashboard/FlightDashboard';
+import Header from './components/Header/Header';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -23,6 +24,10 @@ import States from './assets/States';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render(<Controller />, document.getElementById('flight-select'));
+ReactDOM.render(
+    <Header/>, 
+    document.getElementById('header')
+);
 ReactDOM.render(
     <FlightDashboard flightData={TestUSAFlights} statesData={States} />, 
     document.getElementById('flight-dashboard')
