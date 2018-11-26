@@ -16,6 +16,7 @@ import HNLFlights from './assets/HNLFlights';
 import AllFlights from './assets/AllFlights';
 import AllStates from './assets/AllStates';
 import USAFlights from './assets/USAFlights';
+import TestUSAFlights from './assets/TestUSAFlights';
 
 import States from './assets/States';
 
@@ -23,7 +24,7 @@ import States from './assets/States';
 // ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render(<Controller />, document.getElementById('flight-select'));
 ReactDOM.render(
-    <FlightDashboard flightData={USAFlights} statesData={States} />, 
+    <FlightDashboard flightData={TestUSAFlights} statesData={States} />, 
     document.getElementById('flight-dashboard')
 );
 

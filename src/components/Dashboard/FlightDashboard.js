@@ -78,6 +78,10 @@ class FlightDashboard extends React.Component {
                 dest={this.state.dest}
                 flightData={this.state.flightData}>
               </FlightMap>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
               <FlightStats
                 flightData={this.state.flightData}>
               </FlightStats>

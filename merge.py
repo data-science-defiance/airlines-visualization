@@ -18,4 +18,4 @@ df = pd.merge(
     right_on=['origin_state', 'dest_state', 'quarter', 'year'])
 print(df)
 print(df.columns)
-df.to_json('data/USAFlights.json', orient='records')
+df.head(10000).to_json('data/TestUSAFlights.json', orient='records')
