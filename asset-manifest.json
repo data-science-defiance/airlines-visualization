@@ -1,14 +1,15 @@
 {
-  "main.css": "/airlines-visualization/static/css/main.0e9292a7.chunk.css",
-  "main.js": "/airlines-visualization/static/js/main.b1fa177d.chunk.js",
-  "main.js.map": "/airlines-visualization/static/js/main.b1fa177d.chunk.js.map",
-  "static/js/1.2dd891c4.chunk.js": "/airlines-visualization/static/js/1.2dd891c4.chunk.js",
-  "static/js/1.2dd891c4.chunk.js.map": "/airlines-visualization/static/js/1.2dd891c4.chunk.js.map",
+  "main.css": "/airlines-visualization/static/css/main.977f2935.chunk.css",
+  "main.js": "/airlines-visualization/static/js/main.96127416.chunk.js",
+  "main.js.map": "/airlines-visualization/static/js/main.96127416.chunk.js.map",
+  "static/css/1.d60ae273.chunk.css": "/airlines-visualization/static/css/1.d60ae273.chunk.css",
+  "static/js/1.4fe0b532.chunk.js": "/airlines-visualization/static/js/1.4fe0b532.chunk.js",
+  "static/js/1.4fe0b532.chunk.js.map": "/airlines-visualization/static/js/1.4fe0b532.chunk.js.map",
   "runtime~main.js": "/airlines-visualization/static/js/runtime~main.1eb840d3.js",
   "runtime~main.js.map": "/airlines-visualization/static/js/runtime~main.1eb840d3.js.map",
-  "static/media/logo.svg": "/airlines-visualization/static/media/logo.5d5d9eef.svg",
-  "static/css/main.0e9292a7.chunk.css.map": "/airlines-visualization/static/css/main.0e9292a7.chunk.css.map",
+  "static/css/1.d60ae273.chunk.css.map": "/airlines-visualization/static/css/1.d60ae273.chunk.css.map",
+  "static/css/main.977f2935.chunk.css.map": "/airlines-visualization/static/css/main.977f2935.chunk.css.map",
   "index.html": "/airlines-visualization/index.html",
-  "precache-manifest.2719a7455f35760d77f6a077c99f564a.js": "/airlines-visualization/precache-manifest.2719a7455f35760d77f6a077c99f564a.js",
+  "precache-manifest.8989b2381c6580f1dd09ca0dec950db7.js": "/airlines-visualization/precache-manifest.8989b2381c6580f1dd09ca0dec950db7.js",
   "service-worker.js": "/airlines-visualization/service-worker.js"
 }
