@@ -1,6 +1,6 @@
 import React from 'react';
-import { Map, Marker, Popup, TileLayer, Circle } from 'react-leaflet'
-import FlightSelect from './FlightSelect';
+import { Map, Marker, Popup, TileLayer, Circle, Polyline } from 'react-leaflet'
+import FlightSelect from './FlightController';
 
 let options = ['Hawaii', 'California', 'Alaska', 'Maine'].sort();
 const states = options.map((val) => {
@@ -19,21 +19,54 @@ class FlightMap extends React.Component {
   createAirportMarkers = () => {
     const airports = [];
 
-    for (let i = 0; i < this.props.data.length; i++) {
-      const flightPath = this.props.data[i];
+    for (let i = 0; i < this.props.flightData.length; i++) {
+      const flightPath = this.props.flightData[i];
       const originCoordinate = [flightPath['origin_lat'], flightPath['origin_long']];
+      const destCoordinate = [flightPath['dest_lat'], flightPath['dest_long']]
 
       airports.push(
         <Circle
-          key={i}
+          key={i * 2}
           center={originCoordinate}
           radius={1000}
-          fillColor='#f08080'
+          color="red"
+          fillColor="#f08080"
           fillOpacity={0.5}>
         </Circle>);
+
+      airports.push(
+        <Circle
+          key={i * 2 + 1}
+          center={destCoordinate}
+          radius={1000}
+          color="green"
+          fillColor="#98fb98"
+          fillOpacity={0.5}>
+        </Circle>
+      )
     }
 
     return airports;
+  }
+
+  createFlightPaths = () => {
+    const paths = [];
+
+    for (let i = 0; i < this.props.flightData.length; i++) {
+      const flightPath = this.props.flightData[i];
+      const originCoordinate = [flightPath['origin_lat'], flightPath['origin_long']];
+      const destCoordinate = [flightPath['dest_lat'], flightPath['dest_long']]
+
+      paths.push(
+        <Polyline
+          key={i}
+          positions={[originCoordinate, destCoordinate]}
+          color="white"
+          weight={1}>
+        </Polyline>);
+    }
+
+    return paths;
   }
 
   render() {
@@ -50,6 +83,7 @@ class FlightMap extends React.Component {
             accessToken="pk.eyJ1Ijoic2Vhbnl0YWsiLCJhIjoiY2ptOTFzYnJlMDd4dzNram9wejV6NWUzNCJ9.Pj7WJobAaBWN7naYDiw5XA"
           />
           {this.createAirportMarkers()}
+          {this.createFlightPaths()}
         </Map>
       </div>
     );

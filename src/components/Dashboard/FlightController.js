@@ -2,14 +2,28 @@ import React from 'react';
 import Select from 'react-select';
 import { Card, CardBody, CardTitle } from 'reactstrap';
 
-class FlightSelect extends React.Component {
+class FlightController extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      origin: 'Hawaii',
-      dest: 'California',
+      origin: this.props.origin,
+      dest: this.props.dest,
     };
+  }
+
+  setOrigin = (origin) => {
+    this.setState({
+      origin: origin,
+    });
+    this.props.originCallback(origin);
+  }
+
+  setDest = (dest) => {
+    this.setState({
+      dest: dest,
+    });
+    this.props.destCallback(dest);
   }
 
   render() {
@@ -23,14 +37,14 @@ class FlightSelect extends React.Component {
             <Select
               value={this.state.origin}
               placeholder={this.state.origin}
-              onChange={(evt) => this.setState({ origin: evt })}
+              onChange={(evt) => this.setOrigin(evt)}
               options={this.props.states} />
             <br />
             <h6>Destination:</h6>
             <Select
               value={this.state.dest}
               placeholder={this.state.dest}
-              onChange={(evt) => this.setState({ dest: evt })}
+              onChange={(evt) => this.setDest(evt)}
               options={this.props.states} />
           </CardBody>
         </Card>
@@ -39,4 +53,4 @@ class FlightSelect extends React.Component {
   }
 }
 
-export default FlightSelect;
+export default FlightController;

@@ -5,9 +5,9 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/App';
-import Controller from './components/Dashboard/Controller';
-import FlightMap from './components/Dashboard/FlightMap';
+// import App from './components/App';
+// import Controller from './components/Dashboard/FlightController';
+import FlightDashboard from './components/Dashboard/FlightDashboard';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -15,8 +15,8 @@ import Plotly from 'plotly';
 import HNLFlights from './assets/HNLFlights';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(<Controller />, document.getElementById('flight-select'));
-ReactDOM.render(<FlightMap data={HNLFlights} />, document.getElementById('flight-map'));
+// ReactDOM.render(<Controller />, document.getElementById('flight-select'));
+ReactDOM.render(<FlightDashboard flightData={HNLFlights} />, document.getElementById('flight-dashboard'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
