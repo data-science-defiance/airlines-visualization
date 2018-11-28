@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import FlightController from './FlightController';
 import FlightMap from './FlightMap';
 import FlightStats from './FlightStats';
+import { Card, CardBody } from 'reactstrap';
 
 
 class FlightDashboard extends React.Component {
@@ -32,6 +33,10 @@ class FlightDashboard extends React.Component {
       }
     }
 
+    const minCost = Math.round(Math.min(...flightData.map((fd) => {
+      return fd['market_fare'];
+    })) * 100) / 100;
+
     return (
       <div>
         <Container>
@@ -46,6 +51,12 @@ class FlightDashboard extends React.Component {
                 statesData={this.props.statesData}
                 yearsData={this.props.yearsData}>
               </FlightController>
+              <Card>
+                <CardBody>
+                  <h6>Minimum Flight Cost:</h6>
+                  {minCost}
+                </CardBody>
+              </Card>
             </Col>
             <Col xs="9">
               <FlightMap
