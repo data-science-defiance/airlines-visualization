@@ -24,7 +24,7 @@ class FlightStats extends React.Component {
                 }]}
                 layout={{
                   autosize: true,
-                  title: 'Airports vs Passengers (Origin)',
+                  title: 'Airports vs. Passengers (Origin)',
                   xaxis: {
                     title: 'Airports'
                   },
@@ -49,7 +49,7 @@ class FlightStats extends React.Component {
                 }]}
                 layout={{
                   autosize: true,
-                  title: 'Airport vs Passengers (Destination)',
+                  title: 'Airport vs. Passengers (Destination)',
                   xaxis: {
                     title: 'Airports'
                   },

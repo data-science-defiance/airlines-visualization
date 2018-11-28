@@ -11,16 +11,22 @@ class FlightMap extends React.Component {
   createAirportMarkers = () => {
     const airports = [];
 
+    const maxDepartures = Math.max(...this.props.flightData.map((fd) => {
+      return fd['departures'];
+    }));
+
     for (let i = 0; i < this.props.flightData.length; i++) {
       const flightPath = this.props.flightData[i];
       const originCoordinate = [flightPath['origin_lat'], flightPath['origin_long']];
       const destCoordinate = [flightPath['dest_lat'], flightPath['dest_long']]
 
+      const radius = 10000 * (flightPath['departures'] / maxDepartures + 1);
+
       airports.push(
         <Circle
           key={i * 2}
           center={originCoordinate}
-          radius={1000}
+          radius={radius}
           color="red"
           fillColor="#f08080"
           fillOpacity={0.5}>
@@ -30,7 +36,7 @@ class FlightMap extends React.Component {
         <Circle
           key={i * 2 + 1}
           center={destCoordinate}
-          radius={1000}
+          radius={radius}
           color="green"
           fillColor="#98fb98"
           fillOpacity={0.5}>
@@ -44,17 +50,22 @@ class FlightMap extends React.Component {
   createFlightPaths = () => {
     const paths = [];
 
+    const maxPassengers = Math.max(...this.props.flightData.map((fd) => {
+      return fd['pass_sum'];
+    }));
+
     for (let i = 0; i < this.props.flightData.length; i++) {
       const flightPath = this.props.flightData[i];
       const originCoordinate = [flightPath['origin_lat'], flightPath['origin_long']];
       const destCoordinate = [flightPath['dest_lat'], flightPath['dest_long']]
+      const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25)
 
       paths.push(
         <Polyline
           key={i}
           positions={[originCoordinate, destCoordinate]}
           color="white"
-          weight={0.25}>
+          weight={weight}>
         </Polyline>);
     }
 

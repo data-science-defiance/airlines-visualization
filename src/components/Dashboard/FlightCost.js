@@ -7,9 +7,9 @@ class FlightController extends React.Component {
     const cardType = this.props.flightData.length ? "success" : "danger";
     const headerColor = this.props.flightData.length ? "green" : "red";
     const minCost = this.props.flightData.length ?
-      "$" + Math.round(Math.min(...this.props.flightData.map((fd) => {
+      "$" + Math.min(...this.props.flightData.map((fd) => {
         return fd['market_fare'];
-      })) * 100) / 100 : "No available flight";
+      })).toFixed(2) : "No available flight";
 
     return (
       <div>
