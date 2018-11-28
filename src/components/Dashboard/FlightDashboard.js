@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import FlightController from './FlightController';
+import FlightCost from './FlightCost';
 import FlightMap from './FlightMap';
 import FlightStats from './FlightStats';
-import { Card, CardBody } from 'reactstrap';
+import { Card, CardBody, CardHeader } from 'reactstrap';
 
 
 class FlightDashboard extends React.Component {
@@ -25,17 +26,13 @@ class FlightDashboard extends React.Component {
   render() {
     const flightData = [];
     for (let fd of this.props.flightData) {
-      if (fd['origin'] === this.state.origin && 
-          fd['dest'] === this.state.dest && 
-          fd['year'] === this.state.year && 
-          fd['quarter'] === this.state.quarter) {
+      if (fd['origin'] === this.state.origin &&
+        fd['dest'] === this.state.dest &&
+        fd['year'] === this.state.year &&
+        fd['quarter'] === this.state.quarter) {
         flightData.push(fd);
       }
     }
-
-    const minCost = Math.round(Math.min(...flightData.map((fd) => {
-      return fd['market_fare'];
-    })) * 100) / 100;
 
     return (
       <div>
@@ -51,12 +48,9 @@ class FlightDashboard extends React.Component {
                 statesData={this.props.statesData}
                 yearsData={this.props.yearsData}>
               </FlightController>
-              <Card>
-                <CardBody>
-                  <h6>Minimum Flight Cost:</h6>
-                  {minCost}
-                </CardBody>
-              </Card>
+              <FlightCost
+                flightData={flightData}>
+              </FlightCost>
             </Col>
             <Col xs="9">
               <FlightMap
