@@ -5,59 +5,32 @@ import FlightMap from './FlightMap';
 import FlightStats from './FlightStats';
 
 
-let options = ['HI', 'CA', 'MA', 'CO'].sort();
-const states = options.map((val) => {
-  return { label: val, value: val }
-});
-
 class FlightDashboard extends React.Component {
 
   constructor(props) {
     super(props);
-
-    const flightData = []
-    for (let fd of this.props.flightData) {
-      if (fd['year'] === 2017 && fd['quarter'] === 1) {
-        flightData.push(fd);
-      }
-    }
-
     this.state = {
       origin: 'HI',
       dest: 'CA',
-      flightData: flightData,
+      year: this.props.flightData[0]['year'],
+      quarter: this.props.flightData[0]['quarter'],
     }
   }
 
-  selectOrigin = (origin) => {
-
-    const flightData = []
-    for (let fd of this.props.flightData) {
-      if (fd['origin_state'] === origin && fd['dest_state'] === this.state.dest) {
-        flightData.push(fd);
-      }
-    }
-    this.setState({
-      origin: origin,
-      flightData: flightData,
-    });
-  }
-
-  selectDest = (dest) => {
-    const flightData = []
-    for (let fd of this.props.flightData) {
-      if (fd['origin_state'] === this.state.origin && fd['dest_state'] === dest) {
-        flightData.push(fd);
-      }
-    }
-
-    this.setState({
-      dest: dest,
-      flightData: flightData,
-    });
+  callbackSetState = (state) => {
+    this.setState(state);
   }
 
   render() {
+    const flightData = [];
+    for (let fd of this.props.flightData) {
+      if (fd['origin'] === this.state.origin && 
+          fd['dest'] === this.state.dest && 
+          fd['year'] === this.state.year && 
+          fd['quarter'] === this.state.quarter) {
+        flightData.push(fd);
+      }
+    }
 
     return (
       <div>
@@ -67,23 +40,25 @@ class FlightDashboard extends React.Component {
               <FlightController
                 origin={'Hawaii'}
                 dest={'California'}
-                originCallback={this.selectOrigin}
-                destCallback={this.selectDest}
-                statesData={this.props.statesData}>
+                year={this.state.year}
+                quarter={this.state.quarter}
+                callback={this.callbackSetState}
+                statesData={this.props.statesData}
+                yearsData={this.props.yearsData}>
               </FlightController>
             </Col>
             <Col xs="9">
               <FlightMap
                 origin={this.state.origin}
                 dest={this.state.dest}
-                flightData={this.state.flightData}>
+                flightData={flightData}>
               </FlightMap>
             </Col>
           </Row>
           <Row>
             <Col>
               <FlightStats
-                flightData={this.state.flightData}>
+                flightData={flightData}>
               </FlightStats>
             </Col>
           </Row>

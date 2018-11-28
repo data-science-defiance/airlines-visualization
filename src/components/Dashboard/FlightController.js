@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { Card, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardHeader, Row, Col } from 'reactstrap';
 
 class FlightController extends React.Component {
 
@@ -9,43 +9,59 @@ class FlightController extends React.Component {
     this.state = {
       origin: this.props.origin,
       dest: this.props.dest,
+      year: this.props.year,
+      quarter: this.props.quarter,
     };
-  }
-
-  setOrigin = (origin) => {
-    this.setState({
-      origin: origin.label,
-    });
-    this.props.originCallback(origin.value);
-  }
-
-  setDest = (dest) => {
-    this.setState({
-      dest: dest.label,
-    });
-    this.props.destCallback(dest.value);
   }
 
   render() {
 
     return (
       <div>
-        <Card>
+        <Card outline color="primary">
+          <CardHeader tag="h4">Plan your flight:</CardHeader>
           <CardBody>
-            <CardTitle>Plan your flight:</CardTitle>
             <h6>Origin:</h6>
             <Select
               value={this.state.origin}
               placeholder={this.state.origin}
-              onChange={(evt) => this.setOrigin(evt)}
+              onChange={(evt) => {
+                this.setState({origin: evt.label});
+                this.props.callback({origin: evt.value});
+              }}
               options={this.props.statesData} />
             <br />
             <h6>Destination:</h6>
             <Select
               value={this.state.dest}
               placeholder={this.state.dest}
-              onChange={(evt) => this.setDest(evt)}
+              onChange={(evt) => {
+                this.setState({dest: evt.label});
+                this.props.callback({dest: evt.value});
+              }}
               options={this.props.statesData} />
+            <br />
+            <h6>Year:</h6>
+            <Select
+              value={this.state.year}
+              placeholder={this.state.year}
+              onChange={(evt) => {
+                this.setState({year: evt.label});
+                this.props.callback({year: evt.value});
+              }}
+              options={this.props.yearsData} />
+            <br />
+            <h6>Quarter:</h6>
+            <Select
+              value={this.state.quarter}
+              placeholder={this.state.quarter}
+              onChange={(evt) => {
+                this.setState({quarter: evt.label});
+                this.props.callback({quarter: evt.value});
+              }}
+              options={[1, 2, 3, 4].map((quarter) => {
+                return {"label": quarter, "value": quarter}
+              })} />
           </CardBody>
         </Card>
       </div>

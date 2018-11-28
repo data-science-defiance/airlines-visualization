@@ -20,6 +20,7 @@ import USAFlights from './assets/USAFlights';
 import TestUSAFlights from './assets/TestUSAFlights';
 
 import States from './assets/States';
+import Years from './assets/Years';
 
 
 // ReactDOM.render(<App />, document.getElementById('root'));
@@ -29,7 +30,7 @@ ReactDOM.render(
     document.getElementById('header')
 );
 ReactDOM.render(
-    <FlightDashboard flightData={TestUSAFlights} statesData={States} />, 
+    <FlightDashboard flightData={USAFlights} statesData={States} yearsData={Years.sort().reverse()} />, 
     document.getElementById('flight-dashboard')
 );
 
