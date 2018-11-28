@@ -13,6 +13,7 @@ class FlightStats extends React.Component {
       <div>
         <Container>
           <Row>
+            {/* Bar graph: Passengers(y) vs Airports(x) (Origin) */}
             <Col xs="6">
               <Card>
               <Plot
@@ -22,7 +23,14 @@ class FlightStats extends React.Component {
                   type: 'bar',
                 }]}
                 layout={{
-                  autosize: true
+                  autosize: true,
+                  title: 'Airports vs Passengers (Origin)',
+                  xaxis: {
+                    title: 'Airports'
+                  },
+                  yaxis: {
+                    title: 'Passengers'
+                  }
                 }}
                 useResizeHandler={true}
                 style={{width: "100%", height: "100%"}}
@@ -30,18 +38,24 @@ class FlightStats extends React.Component {
               </Card>
              
             </Col>
-          </Row>
-          <Row>
+            {/* Bar graph: Passengers(y) vs Airports(x) (Destination) */}
             <Col xs="6">
             <Card>
             <Plot
                 data={[{
                   x: this.props.flightData.map((fd) => fd['dest_abr']),
                   y: this.props.flightData.map((fd) => fd['pass_sum']),
-                  type: 'bar',
+                  type: 'bar'
                 }]}
                 layout={{
-                  autosize: true
+                  autosize: true,
+                  title: 'Airport vs Passengers (Destination)',
+                  xaxis: {
+                    title: 'Airports'
+                  },
+                  yaxis: {
+                    title: 'Passengers'
+                  }
                 }}
                 useResizeHandler={true}
                 style={{width: "100%", height: "100%"}}
@@ -50,6 +64,7 @@ class FlightStats extends React.Component {
               
             </Col>
           </Row>
+
         </Container>   
       </div>
     );
