@@ -36,7 +36,7 @@ class FlightDashboard extends React.Component {
 
     return (
       <div>
-        <Container>
+        <Container style={{"marginTop": "1em"}}>
           <Row>
             <Col xs="3">
               <FlightController
@@ -60,7 +60,7 @@ class FlightDashboard extends React.Component {
               </FlightMap>
             </Col>
           </Row>
-          <Row>
+          <Row style={{"marginTop": "1em"}}>
             <Col>
               <FlightStats
                 flightData={flightData}>
