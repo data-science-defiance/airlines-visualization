@@ -49,10 +49,14 @@ if 'hawaii' in sys.argv:
 # Getting Airports
 if 'airports' in sys.argv:
     cur.execute('''
-        SELECT iata, latitude, longitude
-        FROM ics484.airports
+        SELECT oa.iata, oa.latitude as lat, oa.longitude as long
+        FROM ics484.routes
+        JOIN ics484.airports as oa on origin=oa.iata OR dest=oa.iata
+        WHERE passengers > 0 AND departures_performed > 10
+        GROUP BY oa.iata, lat, long
     ''')
     df = pd.DataFrame(cur.fetchall())
+    print('Constructed DataFrame')
     df.columns = [desc[0] for desc in cur.description]
     df = df.set_index('iata')
     df = df[~df.index.duplicated(keep='first')]

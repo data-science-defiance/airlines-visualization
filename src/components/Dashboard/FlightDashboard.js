@@ -13,8 +13,8 @@ class FlightDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      origin: 'HI',
-      dest: 'CA',
+      origin: 'HNL',
+      dest: 'LAX',
       year: this.props.flightData[0]['year'],
       quarter: this.props.flightData[0]['quarter'],
     }
@@ -39,7 +39,6 @@ class FlightDashboard extends React.Component {
     while (!Q.isEmpty()) {
       const u = Q.extractMinimum().key;
       if (E[u] === undefined) {
-        console.log(u);
         continue;
       }
       for (let v of E[u]) {
@@ -69,8 +68,6 @@ class FlightDashboard extends React.Component {
     const E = {};
     const W = {};
 
-    console.log(V);
-
     for (let fd of flightData) {
       if (E[fd['origin_abr']] === undefined) {
         E[fd['origin_abr']] = [fd['dest_abr']];
@@ -80,38 +77,43 @@ class FlightDashboard extends React.Component {
       }
       W[[fd['origin_abr'], fd['dest_abr']]] = fd['market_fare'];
     }
-    const shortestPath = this.dijkstra(V, E, W, 'HNL');
-    console.log(shortestPath);
+    const shortestPath = this.dijkstra(V, E, W, this.state.origin);
 
     return (
       <div>
-        <Container style={{ "marginTop": "1em" }}>
+        <Container style={{ marginTop: "1em" }}>
           <Row>
             <Col xs="3">
               <FlightController
-                origin={'Hawaii'}
-                dest={'California'}
+                origin={'HNL'}
+                dest={'LAX'}
                 year={this.state.year}
                 quarter={this.state.quarter}
                 callback={this.callbackSetState}
+                airportsData={Object.keys(this.props.airportsData).sort().map((val) => {
+                  return { label: val, value: val }
+                })}
                 statesData={this.props.statesData}
                 yearsData={this.props.yearsData}>
               </FlightController>
               <FlightCost
-                flightData={flightData}>
+                origin={this.state.origin}
+                dest={this.state.dest}
+                flightData={flightData}
+                shortestPath={shortestPath}>
               </FlightCost>
             </Col>
             <Col xs="9">
               <FlightMap
-                origin={'HNL'}
-                dest={'MLB'}
+                origin={this.state.origin}
+                dest={this.state.dest}
                 flightData={flightData}
                 airportsData={this.props.airportsData}
                 shortestPath={shortestPath}>
               </FlightMap>
             </Col>
           </Row>
-          <Row style={{ "marginTop": "1em" }}>
+          <Row style={{ marginTop: "1em" }}>
             <Col>
               <FlightStats
                 flightData={flightData}>

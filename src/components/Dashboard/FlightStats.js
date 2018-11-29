@@ -1,12 +1,8 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
-import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import { Container, Row, Col, Card } from 'reactstrap';
 
 class FlightStats extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

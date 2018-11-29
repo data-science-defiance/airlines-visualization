@@ -5,19 +5,16 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import App from './components/App';
-// import Controller from './components/Dashboard/FlightController';
 import FlightDashboard from './components/Dashboard/FlightDashboard';
 import Header from './components/Header/Header';
 
 import * as serviceWorker from './serviceWorker';
 
-import Plotly from 'plotly';
-import HNLFlights from './assets/HNLFlights';
-import AllFlights from './assets/AllFlights';
-import AllStates from './assets/AllStates';
+// import HNLFlights from './assets/HNLFlights';
+// import AllFlights from './assets/AllFlights';
+// import AllStates from './assets/AllStates';
 import USAFlights from './assets/USAFlights';
-import TestUSAFlights from './assets/TestUSAFlights';
+// import TestUSAFlights from './assets/TestUSAFlights';
 
 import Airports from './assets/Airports';
 import States from './assets/States';
