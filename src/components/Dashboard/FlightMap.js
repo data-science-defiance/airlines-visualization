@@ -57,8 +57,8 @@ class FlightMap extends React.Component {
     for (let i = 0; i < this.props.flightData.length; i++) {
       const flightPath = this.props.flightData[i];
       const originCoordinate = [flightPath['origin_lat'], flightPath['origin_long']];
-      const destCoordinate = [flightPath['dest_lat'], flightPath['dest_long']]
-      const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25)
+      const destCoordinate = [flightPath['dest_lat'], flightPath['dest_long']];
+      const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25);
 
       paths.push(
         <Polyline
@@ -70,6 +70,30 @@ class FlightMap extends React.Component {
     }
 
     return paths;
+  }
+
+  shortestPath = () => {
+    const paths = [];
+
+    const maxPassengers = Math.max(...this.props.flightData.map((fd) => {
+      return fd['pass_sum'];
+    }));
+
+    while (this.props.shortestPath[airport] !== undefined) {
+
+      const flightPath = this.props.flightData[i];
+      const originCoordinate = [flightPath['origin_lat'], flightPath['origin_long']];
+      const destCoordinate = [flightPath['dest_lat'], flightPath['dest_long']];
+      const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25);
+
+      paths.push(
+        <Polyline
+          key={i}
+          positions={[originCoordinate, destCoordinate]}
+          color="white"
+          weight={weight}>
+        </Polyline>);
+    }
   }
 
   render() {

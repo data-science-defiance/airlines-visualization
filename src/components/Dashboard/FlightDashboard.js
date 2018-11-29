@@ -80,8 +80,8 @@ class FlightDashboard extends React.Component {
       }
       W[[fd['origin_abr'], fd['dest_abr']]] = fd['market_fare'];
     }
-    const minPath = this.dijkstra(V, E, W, 'HNL');
-    console.log(minPath);
+    const shortestPath = this.dijkstra(V, E, W, 'HNL');
+    console.log(shortestPath);
 
     return (
       <div>
@@ -105,7 +105,9 @@ class FlightDashboard extends React.Component {
               <FlightMap
                 origin={this.state.origin}
                 dest={this.state.dest}
-                flightData={flightData}>
+                flightData={flightData}
+                airportsData={this.props.airportsData}
+                shortestPath={shortestPath}>
               </FlightMap>
             </Col>
           </Row>

@@ -47,15 +47,17 @@ if 'hawaii' in sys.argv:
     df.to_json('data/HawaiiFlights.json', orient='records')
 
 # Getting Airports
-if 'hawaii' in sys.argv:
+if 'airports' in sys.argv:
     cur.execute('''
         SELECT iata, latitude, longitude
         FROM ics484.airports
     ''')
-    df_airports = pd.DataFrame(cur.fetchall())
-    df_airports.columns = [desc[0] for desc in cur.description]
-    df = df.loc[df['origin'] == 'HNL']
-    df.to_json('data/HNLFlights.json', orient='records')
+    df = pd.DataFrame(cur.fetchall())
+    df.columns = [desc[0] for desc in cur.description]
+    df = df.set_index('iata')
+    df = df[~df.index.duplicated(keep='first')]
+    # print(df)
+    df.to_json('data/Airports.json', orient='index')
 
 if 'all' in sys.argv:
     cur.execute('''
@@ -83,6 +85,7 @@ if 'all' in sys.argv:
     print(df)
     print(df.columns)
     df.to_json('data/AllFlights.json', orient='records')
+
 
 # df = df.set_index('origin').join(df_airports.set_index('iata')).reset_index().rename(columns={'index': 'origin'})
 # print(df)

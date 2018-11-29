@@ -19,6 +19,7 @@ import AllStates from './assets/AllStates';
 import USAFlights from './assets/USAFlights';
 import TestUSAFlights from './assets/TestUSAFlights';
 
+import Airports from './assets/Airports';
 import States from './assets/States';
 import Years from './assets/Years';
 
@@ -26,11 +27,15 @@ import Years from './assets/Years';
 // ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render(<Controller />, document.getElementById('flight-select'));
 ReactDOM.render(
-    <Header/>, 
+    <Header />,
     document.getElementById('header')
 );
 ReactDOM.render(
-    <FlightDashboard flightData={USAFlights} statesData={States} yearsData={Years.sort().reverse()} />, 
+    <FlightDashboard
+        flightData={USAFlights}
+        airportsData={Airports}
+        statesData={States}
+        yearsData={Years.sort().reverse()} />,
     document.getElementById('flight-dashboard')
 );
 
