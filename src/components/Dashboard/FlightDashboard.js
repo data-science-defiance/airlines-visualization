@@ -4,7 +4,8 @@ import FlightController from './FlightController';
 import FlightCost from './FlightCost';
 import FlightMap from './FlightMap';
 import FlightStats from './FlightStats';
-import { Card, CardBody, CardHeader } from 'reactstrap';
+
+import { FibonacciHeap } from '@tyriar/fibonacci-heap';
 
 
 class FlightDashboard extends React.Component {
@@ -23,20 +24,68 @@ class FlightDashboard extends React.Component {
     this.setState(state);
   }
 
+  dijkstra = (V, E, W, source) => {
+    const dist = {};
+    const previous = {};
+    const Q = new FibonacciHeap();
+
+    for (let v of V) {
+      dist[v] = Infinity;
+      previous[v] = undefined;
+      Q.insert(v, dist[v]);
+    }
+    dist[source] = 0;
+    
+    while (!Q.isEmpty()) {
+      const u = Q.extractMinimum().key;
+      if (E[u] === undefined) {
+        console.log(u);
+        continue;
+      }
+      for (let v of E[u]) {
+        const alt = dist[u] + W[[u, v]];
+        if (alt < dist[v]) {
+          dist[v] = alt;
+          Q.insert(v, dist[v]);
+          previous[v] = u;
+        }
+      }
+    }
+    return previous;
+  }
+
   render() {
     const flightData = [];
     for (let fd of this.props.flightData) {
-      if (fd['origin'] === this.state.origin &&
-        fd['dest'] === this.state.dest &&
-        fd['year'] === this.state.year &&
+      if (fd['year'] === this.state.year &&
         fd['quarter'] === this.state.quarter) {
         flightData.push(fd);
       }
     }
 
+    const origin = new Set(flightData.map((fd) => fd['origin_abr']));
+    const dest = new Set(flightData.map((fd) => fd['dest_abr']));
+    const V = new Set([...origin, ...dest]);
+    const E = {};
+    const W = {};
+
+    console.log(V);
+
+    for (let fd of flightData) {
+      if (E[fd['origin_abr']] === undefined) {
+        E[fd['origin_abr']] = [fd['dest_abr']];
+      }
+      else {
+        E[fd['origin_abr']].push(fd['dest_abr']);
+      }
+      W[[fd['origin_abr'], fd['dest_abr']]] = fd['market_fare'];
+    }
+    const minPath = this.dijkstra(V, E, W, 'HNL');
+    console.log(minPath);
+
     return (
       <div>
-        <Container style={{"marginTop": "1em"}}>
+        <Container style={{ "marginTop": "1em" }}>
           <Row>
             <Col xs="3">
               <FlightController
@@ -60,7 +109,7 @@ class FlightDashboard extends React.Component {
               </FlightMap>
             </Col>
           </Row>
-          <Row style={{"marginTop": "1em"}}>
+          <Row style={{ "marginTop": "1em" }}>
             <Col>
               <FlightStats
                 flightData={flightData}>

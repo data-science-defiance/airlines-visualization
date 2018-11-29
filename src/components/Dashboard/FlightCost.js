@@ -17,7 +17,7 @@ class FlightController extends React.Component {
           <CardHeader tag="h5">Minimum Flight Cost:</CardHeader>
           <CardBody>
             <Card>
-              <h4 style={{ "color": headerColor, "text-align": "right", "margin": "1px 10px 0 0" }}> {minCost} </h4>
+              <h4 style={{ color: headerColor, textAlign: "right", margin: "1px 10px 0 0" }}> {minCost} </h4>
             </Card>
           </CardBody>
         </Card>
