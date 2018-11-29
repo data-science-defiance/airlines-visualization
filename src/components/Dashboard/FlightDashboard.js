@@ -50,7 +50,8 @@ class FlightDashboard extends React.Component {
         }
       }
     }
-    return previous;
+    console.log(dist);
+    return {'path': previous, 'dist': dist};
   }
 
   render() {
@@ -77,16 +78,20 @@ class FlightDashboard extends React.Component {
       }
       W[[fd['origin_abr'], fd['dest_abr']]] = fd['market_fare'];
     }
-    const shortestPath = this.dijkstra(V, E, W, this.state.origin);
+    const dijkstraResult = this.dijkstra(V, E, W, this.state.origin);
 
     return (
       <div>
         <Container style={{ marginTop: "1em" }}>
           <Row>
-            <Col xs="3">
+            <Col xs="4">
               <FlightController
-                origin={'HNL'}
-                dest={'LAX'}
+                originStateLabel={'Hawaii'}
+                destStateLabel={'California'}
+                originState={'HI'}
+                destState={'CA'}
+                originAirport={'HNL'}
+                destAirport={'LAX'}
                 year={this.state.year}
                 quarter={this.state.quarter}
                 callback={this.callbackSetState}
@@ -94,30 +99,31 @@ class FlightDashboard extends React.Component {
                   return { label: val, value: val }
                 })}
                 statesData={this.props.statesData}
+                statesToAirportsData={this.props.statesToAirportsData}
                 yearsData={this.props.yearsData}>
               </FlightController>
               <FlightCost
                 origin={this.state.origin}
                 dest={this.state.dest}
-                flightData={flightData}
-                shortestPath={shortestPath}>
+                shortestPath={dijkstraResult['path']}
+                shortestDist={dijkstraResult['dist']}>
               </FlightCost>
             </Col>
-            <Col xs="9">
+            <Col xs="8">
               <FlightMap
                 origin={this.state.origin}
                 dest={this.state.dest}
                 flightData={flightData}
                 airportsData={this.props.airportsData}
-                shortestPath={shortestPath}>
+                shortestPath={dijkstraResult['path']}>
               </FlightMap>
             </Col>
           </Row>
           <Row style={{ marginTop: "1em" }}>
             <Col>
-              <FlightStats
+              {/* <FlightStats
                 flightData={flightData}>
-              </FlightStats>
+              </FlightStats> */}
             </Col>
           </Row>
         </Container>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, TileLayer, Circle, Polyline, LayerGroup } from 'react-leaflet'
+import { Map, TileLayer, Circle, Polyline, LayerGroup } from 'react-leaflet';
 
 class FlightMap extends React.Component {
 

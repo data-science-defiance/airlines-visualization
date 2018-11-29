@@ -63,6 +63,38 @@ if 'airports' in sys.argv:
     # print(df)
     df.to_json('data/Airports.json', orient='index')
 
+if 'flights' in sys.argv:
+    cur.execute('''
+        SELECT oa.iata, oa.latitude as lat, oa.longitude as long
+        FROM ics484.routes
+        JOIN ics484.airports as oa on origin=oa.iata
+        WHERE passengers > 0 AND departures_performed > 10
+        GROUP BY oa.iata, lat, long
+    ''')
+    df = pd.DataFrame(cur.fetchall())
+    print('Constructed DataFrame')
+    df.columns = [desc[0] for desc in cur.description]
+    df = df.set_index('iata')
+    df = df[~df.index.duplicated(keep='first')]
+    # print(df)
+    df.to_json('data/Airports.json', orient='index')
+
+if 'states' in sys.argv:
+    cur.execute('''
+        SELECT oa.iata, origin_state_abr as origin
+        FROM ics484.routes
+        JOIN ics484.airports as oa on origin=oa.iata
+        WHERE passengers > 0 AND departures_performed > 10
+        GROUP BY oa.iata, origin_state_abr
+    ''')
+    df = pd.DataFrame(cur.fetchall())
+    print('Constructed DataFrame')
+    df.columns = [desc[0] for desc in cur.description]
+    df = df.groupby('origin')['iata'].apply(list).apply(lambda row: sorted(row))
+    print(df)
+    df.to_json('data/StatesToAirports.json', orient='index')
+    
+
 if 'all' in sys.argv:
     cur.execute('''
         SELECT SUM(departures_performed) as departures, 
