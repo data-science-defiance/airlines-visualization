@@ -89,7 +89,7 @@ class FlightController extends React.Component {
                 </Col>
               </Row>
               <Row className="form-row">
-                <Col xs="6">
+                <Col xs="7">
                   <h6>Year:</h6>
                   <Select
                     value={this.state.year}
@@ -100,7 +100,7 @@ class FlightController extends React.Component {
                     }}
                     options={this.props.yearsData} />
                 </Col>
-                <Col xs="6">
+                <Col xs="5">
                   <h6>Quarter:</h6>
                   <Select
                     value={this.state.quarter}

@@ -131,8 +131,8 @@ class FlightMap extends React.Component {
   }
 
   render() {
-    const position = [37.8, -96];
-    const zoom = 4;
+    const position = [32.8, -96];
+    const zoom = 3;
 
     const shortestPaths = this.createShortestFlightPaths();
 

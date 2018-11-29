@@ -14,7 +14,7 @@ class FlightDashboard extends React.Component {
     super(props);
     this.state = {
       origin: 'HNL',
-      dest: 'LAX',
+      dest: 'BGR',
       year: this.props.flightData[0]['year'],
       quarter: this.props.flightData[0]['quarter'],
     }
@@ -35,7 +35,7 @@ class FlightDashboard extends React.Component {
       Q.insert(v, dist[v]);
     }
     dist[source] = 0;
-    
+
     while (!Q.isEmpty()) {
       const u = Q.extractMinimum().key;
       if (E[u] === undefined) {
@@ -51,7 +51,7 @@ class FlightDashboard extends React.Component {
       }
     }
     console.log(dist);
-    return {'path': previous, 'dist': dist};
+    return { 'path': previous, 'dist': dist };
   }
 
   render() {
@@ -80,6 +80,14 @@ class FlightDashboard extends React.Component {
     }
     const dijkstraResult = this.dijkstra(V, E, W, this.state.origin);
 
+    const flightPathData = [];
+    for (let fd of this.props.flightData) {
+      if (fd['origin_abr'] === this.state.origin &&
+        fd['dest_abr'] === this.state.dest) {
+        flightPathData.push(fd);
+      }
+    }
+
     return (
       <div>
         <Container style={{ marginTop: "1em" }}>
@@ -87,11 +95,11 @@ class FlightDashboard extends React.Component {
             <Col xs="4">
               <FlightController
                 originStateLabel={'Hawaii'}
-                destStateLabel={'California'}
+                destStateLabel={'Maine'}
                 originState={'HI'}
-                destState={'CA'}
+                destState={'ME'}
                 originAirport={'HNL'}
-                destAirport={'LAX'}
+                destAirport={'BGR'}
                 year={this.state.year}
                 quarter={this.state.quarter}
                 callback={this.callbackSetState}
@@ -121,9 +129,9 @@ class FlightDashboard extends React.Component {
           </Row>
           <Row style={{ marginTop: "1em" }}>
             <Col>
-              {/* <FlightStats
-                flightData={flightData}>
-              </FlightStats> */}
+              <FlightStats
+                flightData={flightPathData}>
+              </FlightStats>
             </Col>
           </Row>
         </Container>

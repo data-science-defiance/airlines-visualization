@@ -10,9 +10,6 @@ import Header from './components/Header/Header';
 
 import * as serviceWorker from './serviceWorker';
 
-// import HNLFlights from './assets/HNLFlights';
-// import AllFlights from './assets/AllFlights';
-// import AllStates from './assets/AllStates';
 import USAFlights from './assets/USAFlights';
 // import TestUSAFlights from './assets/TestUSAFlights';
 
