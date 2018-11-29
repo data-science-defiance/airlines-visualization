@@ -103,8 +103,8 @@ class FlightDashboard extends React.Component {
             </Col>
             <Col xs="9">
               <FlightMap
-                origin={this.state.origin}
-                dest={this.state.dest}
+                origin={'HNL'}
+                dest={'MLB'}
                 flightData={flightData}
                 airportsData={this.props.airportsData}
                 shortestPath={shortestPath}>
