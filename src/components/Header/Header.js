@@ -1,16 +1,7 @@
 import React from 'react';
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavbarBrand } from 'reactstrap';
 
 class Header extends React.Component {
   constructor(props) {
@@ -28,9 +19,9 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div >
         <Navbar color="light" light expand="md" style={{justifyContent: 'center', fontFamily: 'georgia', fontWeight: 'bold'}}>
-          <NavbarBrand href="/">Airlines Visualization</NavbarBrand>
+            <NavbarBrand href="/">Airlines Visualization (Hawaii to Domestic U.S.)</NavbarBrand>
         </Navbar>
       </div>
     );
