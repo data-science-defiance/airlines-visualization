@@ -49,16 +49,20 @@ if 'hawaii' in sys.argv:
 # Getting Airports
 if 'airports' in sys.argv:
     cur.execute('''
-        SELECT oa.iata, oa.latitude as lat, oa.longitude as long
+        SELECT SUM(departures_performed) as departures, 
+            SUM(passengers) as pass_sum,
+            origin,
+            dest
         FROM ics484.routes
-        JOIN ics484.airports as oa on origin=oa.iata OR dest=oa.iata
+        JOIN ics484.airports as oa on origin=oa.iata
+        JOIN ics484.airports as da on dest=da.iata
         WHERE passengers > 0 AND departures_performed > 10
-        GROUP BY oa.iata, lat, long
+        GROUP BY origin, dest
     ''')
     df = pd.DataFrame(cur.fetchall())
     print('Constructed DataFrame')
     df.columns = [desc[0] for desc in cur.description]
-    df = df.set_index('iata')
+    df = df.set_index(['origin', 'dest'])
     df = df[~df.index.duplicated(keep='first')]
     # print(df)
     df.to_json('data/Airports.json', orient='index')
