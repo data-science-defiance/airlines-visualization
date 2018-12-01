@@ -20,10 +20,10 @@ class FlightStats extends React.Component {
 
     for (let i = 0; i < shortestPath.length - 1; i++) {
       flightPath.push(shortestPath[i] + ' to ' + shortestPath[i + 1]);
-      departures.push(this.props.flightPathStats[shortestPath[i] + ':' + shortestPath[i + 1]]['departures']);
-      passengers.push(this.props.flightPathStats[shortestPath[i] + ':' + shortestPath[i + 1]]['pass_sum'])
+      const index = shortestPath[i] + ':' + shortestPath[i + 1] + ':' + this.props.year + ':' + this.props.quarter;
+      departures.push(this.props.flightPathStats[index]['departures']);
+      passengers.push(this.props.flightPathStats[index]['pass_sum'])
     }
-
 
     return (
       <div>

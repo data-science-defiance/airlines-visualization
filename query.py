@@ -52,17 +52,19 @@ if 'airports' in sys.argv:
         SELECT SUM(departures_performed) as departures, 
             SUM(passengers) as pass_sum,
             origin,
-            dest
+            dest,
+            year,
+            quarter
         FROM ics484.routes
         JOIN ics484.airports as oa on origin=oa.iata
         JOIN ics484.airports as da on dest=da.iata
         WHERE passengers > 0 AND departures_performed > 10
-        GROUP BY origin, dest
+        GROUP BY origin, dest, year, quarter
     ''')
     df = pd.DataFrame(cur.fetchall())
     print('Constructed DataFrame')
     df.columns = [desc[0] for desc in cur.description]
-    df['origin'] += ':' + df['dest']
+    df['origin'] += ':' + df['dest'] + ':' + df['year'].astype(str) + ':' + df['quarter'].astype(str)
     df = df.set_index(['origin'])
     df = df[~df.index.duplicated(keep='first')]
     # print(df)

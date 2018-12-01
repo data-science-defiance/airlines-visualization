@@ -134,6 +134,8 @@ class FlightDashboard extends React.Component {
               <FlightStats
                 origin={this.state.origin}
                 dest={this.state.dest}
+                year={this.state.year}
+                quarter={this.state.quarter}
                 flightData={flightPathData}
                 flightPathStats={this.props.flightPathStats}
                 shortestPath={dijkstraResult['path']}>
