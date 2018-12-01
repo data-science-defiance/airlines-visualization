@@ -62,10 +62,11 @@ if 'airports' in sys.argv:
     df = pd.DataFrame(cur.fetchall())
     print('Constructed DataFrame')
     df.columns = [desc[0] for desc in cur.description]
-    df = df.set_index(['origin', 'dest'])
+    df['origin'] += ':' + df['dest']
+    df = df.set_index(['origin'])
     df = df[~df.index.duplicated(keep='first')]
     # print(df)
-    df.to_json('data/Airports.json', orient='index')
+    df.to_json('data/FlightPathStats.json', orient='index')
 
 if 'flights' in sys.argv:
     cur.execute('''

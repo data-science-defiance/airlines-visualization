@@ -14,6 +14,7 @@ import USAFlights from './assets/USAFlights';
 // import TestUSAFlights from './assets/TestUSAFlights';
 
 import Airports from './assets/Airports';
+import FlightPathStats from './assets/FlightPathStats';
 import States from './assets/States';
 import StatesToAirports from './assets/StatesToAirports';
 import Years from './assets/Years';
@@ -29,6 +30,7 @@ ReactDOM.render(
     <FlightDashboard
         flightData={USAFlights}
         airportsData={Airports}
+        flightPathStats={FlightPathStats}
         statesData={States}
         statesToAirportsData={StatesToAirports}
         yearsData={Years.sort().reverse()} />,

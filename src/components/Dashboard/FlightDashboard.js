@@ -88,6 +88,8 @@ class FlightDashboard extends React.Component {
       }
     }
 
+    console.log(this.props.flightPathStats);
+
     return (
       <div>
         <Container style={{ marginTop: "1em" }}>
@@ -130,7 +132,11 @@ class FlightDashboard extends React.Component {
           <Row style={{ marginTop: "1em" }}>
             <Col>
               <FlightStats
-                flightData={flightPathData}>
+                origin={this.state.origin}
+                dest={this.state.dest}
+                flightData={flightPathData}
+                flightPathStats={this.props.flightPathStats}
+                shortestPath={dijkstraResult['path']}>
               </FlightStats>
             </Col>
           </Row>
