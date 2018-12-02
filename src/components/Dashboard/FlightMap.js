@@ -1,5 +1,6 @@
 import React from 'react';
 import { Map, TileLayer, Circle, Polyline, LayerGroup } from 'react-leaflet';
+import { Container, Row, Col, Card } from 'reactstrap';
 
 class FlightMap extends React.Component {
 
@@ -138,21 +139,24 @@ class FlightMap extends React.Component {
 
     return (
       <div>
-        <Map center={position} zoom={zoom}>
-          <TileLayer
-            url="https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}"
-            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-            id="mapbox.dark"
-            accessToken="pk.eyJ1Ijoic2Vhbnl0YWsiLCJhIjoiY2ptOTFzYnJlMDd4dzNram9wejV6NWUzNCJ9.Pj7WJobAaBWN7naYDiw5XA"
-            preferCanvas={true}
-          />
-          <LayerGroup>
-            {shortestPaths['airports']}
-          </LayerGroup>
-          <LayerGroup>
-            {shortestPaths['paths']}
-          </LayerGroup>
-        </Map>
+        <Card>
+          <Map center={position} zoom={zoom}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              // url="https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}"
+              attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+              id="mapbox.light"
+              accessToken="pk.eyJ1Ijoic2Vhbnl0YWsiLCJhIjoiY2ptOTFzYnJlMDd4dzNram9wejV6NWUzNCJ9.Pj7WJobAaBWN7naYDiw5XA"
+              preferCanvas={true}
+            />
+            <LayerGroup>
+              {shortestPaths['airports']}
+            </LayerGroup>
+            <LayerGroup>
+              {shortestPaths['paths']}
+            </LayerGroup>
+          </Map>
+        </Card>
       </div>
     );
   }

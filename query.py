@@ -101,6 +101,12 @@ if 'states' in sys.argv:
     print(df)
     df.to_json('data/StatesToAirports.json', orient='index')
     
+if 'reindex' in sys.argv:
+    df = pd.read_json('data/USAFlights.json', orient='records')
+    df['origin'] += ':' + df['dest'] + ':' + df['year'].astype(str) + ':' + df['quarter'].astype(str)
+    df = df.set_index(['origin'])
+    df = df[~df.index.duplicated(keep='first')]
+    df.to_json('data/Flights.json', orient='index')
 
 if 'all' in sys.argv:
     cur.execute('''

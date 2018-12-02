@@ -7,6 +7,7 @@ class FlightController extends React.Component {
     let currAirport = this.props.dest;
 
     const shortestPath = [];
+    const pathCost = [];
     let totalCost = 0;
 
     while (this.props.shortestPath[currAirport] !== undefined) {
