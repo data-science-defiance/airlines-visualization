@@ -5,7 +5,7 @@ class FooterPage extends React.Component {
     render() {
         return (
             <div className="text-center">
-                <Container fluid className="text-white bg-warning">
+                <Container fluid className="text-white bg-info">
                     <br></br>
                     <br></br>
                     <h3>A job fills your pocket. Adventure in paradise fills your soul.</h3>
