@@ -11,7 +11,7 @@ class FlightStats extends React.Component {
           <Row>
             {/* Bar graph: Passengers(y) vs Airports(x) (Origin) */}
             <Col xs="6">
-              <Card>
+              <Card color="info">
               <Plot
                 data={[{
                   x: this.props.flightData.map((fd) => fd['origin_abr']),
@@ -36,7 +36,7 @@ class FlightStats extends React.Component {
             </Col>
             {/* Bar graph: Passengers(y) vs Airports(x) (Destination) */}
             <Col xs="6">
-            <Card>
+            <Card color="info">
             <Plot
                 data={[{
                   x: this.props.flightData.map((fd) => fd['dest_abr']),
@@ -60,7 +60,7 @@ class FlightStats extends React.Component {
               
             </Col>
           </Row>
-
+          <br></br>
 
         </Container>   
       </div>

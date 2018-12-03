@@ -1,50 +1,29 @@
-import React from 'react';
-import { 
-    Col,
-    Container,
-    Row } from 'reactstrap';
+import React from "react";
+import { Container } from "reactstrap";
 
-class Footer extends React.Component {
+class FooterPage extends React.Component {
     render() {
         return (
-            <Footer color="blue" className="font-small pt-4 mt-4">
-                <Container fluid className="text-center text-md-left">
-                    <Row>
-                        <Col md="6">
-                            <h5 className="title">Footer Content</h5>
-                            <p>
-                                Here you can use rows and columns here to organize your footer
-                                content.
-                            </p>
-                        </Col>
-                            <Col md="6">
-                            <h5 className="title">Links</h5>
-                            <ul>
-                                <li className="list-unstyled">
-                                <a href="#!">Link 1</a>
-                                </li>
-                                <li className="list-unstyled">
-                                <a href="#!">Link 2</a>
-                                </li>
-                                <li className="list-unstyled">
-                                <a href="#!">Link 3</a>
-                                </li>
-                                <li className="list-unstyled">
-                                <a href="#!">Link 4</a>
-                                </li>
-                            </ul>
-                        </Col>
-                    </Row>
+            <div className="text-center">
+                <Container fluid className="text-white bg-warning">
+                    <br></br>
+                    <br></br>
+                    <h3>A job fills your pocket. Adventure in paradise fills your soul.</h3>
+                    <br></br>
+                    <br></br>
                 </Container>
-                <div className="footer-copyright text-center py-3">
-                    <Container fluid>
+                <Container fluid className="text-white bg-primary">
+                    <br></br>
                     &copy; {new Date().getFullYear()} Copyright:{" "}
-                    <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
-                    </Container>
-                </div>
-            </Footer>
+                    <a href="https://github.com/data-science-defiance/airlines-visualization" className="text-white" style={{ textDecoration: "underline"}}>
+                        Airline Visualization 
+                    </a>
+                    <br></br>
+                    <br></br>
+                </Container>
+            </div>
         );
     }
 }
 
-export default Footer;
+export default FooterPage;
