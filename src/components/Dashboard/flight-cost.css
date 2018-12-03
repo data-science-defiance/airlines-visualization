@@ -1,0 +1,16 @@
+.cost-text {
+    color: green;
+    text-align: right;
+    float: right;
+    margin: 1px 10px 1px 0;
+}
+
+.info-text {
+    text-align: left;
+    float: left;
+    margin: 1px 0 1px 10px
+}
+
+.card-listings {
+    margin-top: 1em;
+}

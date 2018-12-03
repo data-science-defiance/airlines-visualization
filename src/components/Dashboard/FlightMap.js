@@ -97,7 +97,16 @@ class FlightMap extends React.Component {
         fillOpacity={0.5}>
       </Circle>);
 
-    while (this.props.shortestPath[currAirport] !== undefined) {
+    const colors = [];
+
+    for (let i = 0; this.props.shortestPath[currAirport] !== undefined; i++) {
+      colors.push(this.props.colors[i]);
+      currAirport = this.props.shortestPath[currAirport];
+    }
+
+    currAirport = this.props.dest;
+
+    for (let i = 0; this.props.shortestPath[currAirport] !== undefined; i++) {
 
       prevAirport = currAirport;
       prevAirportCoordinate = currAirportCoordinate;
@@ -123,7 +132,7 @@ class FlightMap extends React.Component {
         <Polyline
           key={[prevAirport, currAirport]}
           positions={[prevAirportCoordinate, currAirportCoordinate]}
-          color="white"
+          color={colors[colors.length - i - 1]}
           weight={1}>
         </Polyline>);
     }

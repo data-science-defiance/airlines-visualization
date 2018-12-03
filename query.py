@@ -103,8 +103,8 @@ if 'states' in sys.argv:
     
 if 'reindex' in sys.argv:
     df = pd.read_json('data/USAFlights.json', orient='records')
-    df['origin'] += ':' + df['dest'] + ':' + df['year'].astype(str) + ':' + df['quarter'].astype(str)
-    df = df.set_index(['origin'])
+    df['origin_abr'] += ':' + df['dest_abr'] + ':' + df['year'].astype(str) + ':' + df['quarter'].astype(str)
+    df = df.set_index(['origin_abr'])
     df = df[~df.index.duplicated(keep='first')]
     df.to_json('data/Flights.json', orient='index')
 
