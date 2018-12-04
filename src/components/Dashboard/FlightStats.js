@@ -79,7 +79,6 @@ class FlightStats extends React.Component {
           <Row>
             {/* Bar graph: Passengers(y) vs Airports(x) (Origin) */}
             <Col xs="6">
-<<<<<<< HEAD
               <Card>
                 <Plot
                   data={[{
@@ -100,8 +99,6 @@ class FlightStats extends React.Component {
                   useResizeHandler={true}
                   style={{ width: "100%", height: "100%" }}
                 />
-=======
-              <Card color="info">
               <Plot
                 data={[{
                   x: this.props.flightData.map((fd) => fd['origin_abr']),
@@ -109,6 +106,8 @@ class FlightStats extends React.Component {
                   type: 'bar',
                 }]}
                 layout={{
+                  paper_bgcolor: '#F8F9FA',
+                  plot_bgcolor: '#F8F9FA',
                   autosize: true,
                   title: 'Airports vs. Passengers (Origin)',
                   xaxis: {
@@ -121,12 +120,10 @@ class FlightStats extends React.Component {
                 useResizeHandler={true}
                 style={{width: "100%", height: "100%"}}
               />
->>>>>>> Added in colors
               </Card>
             </Col>
             {/* Bar graph: Passengers(y) vs Airports(x) (Destination) */}
             <Col xs="6">
-<<<<<<< HEAD
               <Card>
                 <Plot
                   data={[{
@@ -179,8 +176,8 @@ class FlightStats extends React.Component {
               </Card>
             </Col>
           </Row>
-          <Row>
 
+          <Row>
             <Col xs="12">
               <Card>
                 <Plot
@@ -198,35 +195,28 @@ class FlightStats extends React.Component {
                   useResizeHandler={true}
                   style={{ width: "100%", height: "100%" }}
                 />
-              </Card>
-=======
-            <Card color="info">
-            <Plot
-                data={[{
-                  x: this.props.flightData.map((fd) => fd['dest_abr']),
-                  y: this.props.flightData.map((fd) => fd['pass_sum']),
-                  type: 'bar'
-                }]}
-                layout={{
-                  autosize: true,
-                  title: 'Airport vs. Passengers (Destination)',
-                  xaxis: {
-                    title: 'Airports'
-                  },
-                  yaxis: {
-                    title: 'Passengers'
-                  }
-                }}
-                useResizeHandler={true}
-                style={{width: "100%", height: "100%"}}
-              />
-            </Card>
-              
-            </Col>
-          </Row>
-          <br></br>
->>>>>>> Added in colors
-
+              <Plot
+                  data={[{
+                    x: this.props.flightData.map((fd) => fd['dest_abr']),
+                    y: this.props.flightData.map((fd) => fd['pass_sum']),
+                    type: 'bar'
+                  }]}
+                  layout={{
+                    paper_bgcolor: '#F8F9FA',
+                    plot_bgcolor: '#F8F9FA',
+                    autosize: true,
+                    title: 'Airport vs. Passengers (Destination)',
+                    xaxis: {
+                      title: 'Airports'
+                    },
+                    yaxis: {
+                      title: 'Passengers'
+                    }
+                  }}
+                  useResizeHandler={true}
+                  style={{width: "100%", height: "100%"}}
+                />
+            </Card> 
             </Col>
           </Row>
         </Container>

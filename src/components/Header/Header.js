@@ -7,8 +7,8 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="primary" expand="md" style={{justifyContent: 'center', fontWeight: 'bold'}}>
-            <NavbarBrand href="/" className="text-white">
+        <Navbar color="white" expand="md" style={{justifyContent: 'center', fontWeight: 'bold'}}>
+            <NavbarBrand href="/" className="text-dark">
               <h1>Trip to Paradise Visualization</h1>
             </NavbarBrand>
         </Navbar>
