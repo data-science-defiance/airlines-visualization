@@ -85,6 +85,7 @@ class FlightStats extends React.Component {
                     x: flightPath,
                     y: passengers,
                     type: 'bar',
+                    marker:{size:16, color: this.props.colors},
                   }]}
                   layout={{
                     autosize: true,
@@ -108,7 +109,8 @@ class FlightStats extends React.Component {
                   data={[{
                     x: flightPath,
                     y: departures,
-                    type: 'bar'
+                    type: 'bar',
+                    marker:{size:16, color: this.props.colors},
                   }]}
                   layout={{
                     autosize: true,

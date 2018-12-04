@@ -54,7 +54,7 @@ class FlightMap extends React.Component {
       const flightPath = this.props.flightData[i];
       const originCoordinate = [flightPath['origin_lat'], flightPath['origin_long']];
       const destCoordinate = [flightPath['dest_lat'], flightPath['dest_long']];
-      const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25);
+      const weight = 10 * (flightPath['pass_sum'] / maxPassengers + 0.25);
 
       paths.push(
         <Polyline
@@ -110,14 +110,25 @@ class FlightMap extends React.Component {
 
       prevAirport = currAirport;
       prevAirportCoordinate = currAirportCoordinate;
+      const flightPath = this.props.flightPathStats;
 
       currAirport = this.props.shortestPath[currAirport];
       currAirportCoordinate = [
         this.props.airportsData[currAirport]['lat'],
         this.props.airportsData[currAirport]['long'],
       ];
-      // const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25);
-
+      let weight;
+      let string = prevAirport + ':' + currAirport + ':' + this.props.year + ':' + this.props.quarter;
+      console.log(flightPath[string].pass_sum);
+      if(flightPath[string].pass_sum < 250) { weight = 70; }
+      if(flightPath[string].pass_sum > 250) { weight = 60; }
+      if(flightPath[string].pass_sum > 1000) { weight = 50; }
+      if(flightPath[string].pass_sum > 4000) { weight = 40; }
+      if(flightPath[string].pass_sum > 16000) { weight = 30; }
+      if(flightPath[string].pass_sum > 64000) { weight = 20; }
+      else { weight = 10; }
+      //const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25);
+       
       airports.push(
         <Circle
           key={currAirport}
@@ -133,7 +144,7 @@ class FlightMap extends React.Component {
           key={[prevAirport, currAirport]}
           positions={[prevAirportCoordinate, currAirportCoordinate]}
           color={colors[colors.length - i - 1]}
-          weight={1}>
+          weight={weight}>
         </Polyline>);
     }
 
@@ -172,5 +183,4 @@ class FlightMap extends React.Component {
 }
 
 export default FlightMap;
-
 
