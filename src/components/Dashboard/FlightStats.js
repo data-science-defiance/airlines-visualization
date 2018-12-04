@@ -2,6 +2,8 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import { Container, Row, Col, Card } from 'reactstrap';
 
+import './flight-stats.css';
+
 class FlightStats extends React.Component {
 
   render() {
@@ -76,7 +78,7 @@ class FlightStats extends React.Component {
     return (
       <div>
         <Container>
-          <Row>
+          <Row className="flight-stats-row">
             {/* Bar graph: Passengers(y) vs Airports(x) (Origin) */}
             <Col xs="6">
               <Card>
@@ -87,6 +89,8 @@ class FlightStats extends React.Component {
                     type: 'bar',
                   }]}
                   layout={{
+                    paper_bgcolor: '#F8F9FA',
+                    plot_bgcolor: '#F8F9FA',
                     autosize: true,
                     title: 'Number of Passengers per Flight Leg',
                     xaxis: {
@@ -99,27 +103,6 @@ class FlightStats extends React.Component {
                   useResizeHandler={true}
                   style={{ width: "100%", height: "100%" }}
                 />
-              <Plot
-                data={[{
-                  x: this.props.flightData.map((fd) => fd['origin_abr']),
-                  y: this.props.flightData.map((fd) => fd['pass_sum']),
-                  type: 'bar',
-                }]}
-                layout={{
-                  paper_bgcolor: '#F8F9FA',
-                  plot_bgcolor: '#F8F9FA',
-                  autosize: true,
-                  title: 'Airports vs. Passengers (Origin)',
-                  xaxis: {
-                    title: 'Airports'
-                  },
-                  yaxis: {
-                    title: 'Passengers'
-                  }
-                }}
-                useResizeHandler={true}
-                style={{width: "100%", height: "100%"}}
-              />
               </Card>
             </Col>
             {/* Bar graph: Passengers(y) vs Airports(x) (Destination) */}
@@ -132,6 +115,8 @@ class FlightStats extends React.Component {
                     type: 'bar'
                   }]}
                   layout={{
+                    paper_bgcolor: '#F8F9FA',
+                    plot_bgcolor: '#F8F9FA',
                     autosize: true,
                     title: 'Number of Flights per Flight Leg',
                     xaxis: {
@@ -148,7 +133,7 @@ class FlightStats extends React.Component {
               </Card>
             </Col>
           </Row>
-          <Row>
+          <Row className="flight-stats-row">
             <Col xs="6">
               <Card>
                 <Plot
@@ -161,6 +146,8 @@ class FlightStats extends React.Component {
                     },
                   }]}
                   layout={{
+                    paper_bgcolor: '#F8F9FA',
+                    plot_bgcolor: '#F8F9FA',
                     // autosize: true,
                     title: 'Market Fare of Flight by Flight Leg',
                     // xaxis: {
@@ -176,13 +163,14 @@ class FlightStats extends React.Component {
               </Card>
             </Col>
           </Row>
-
-          <Row>
+          <Row className="flight-stats-row">
             <Col xs="12">
               <Card>
                 <Plot
                   data={timeSeriesData}
                   layout={{
+                    paper_bgcolor: '#F8F9FA',
+                    plot_bgcolor: '#F8F9FA',
                     // autosize: true,
                     title: 'Market Fare of Flight Leg by Year and Quarter',
                     xaxis: {
@@ -194,27 +182,6 @@ class FlightStats extends React.Component {
                   }}
                   useResizeHandler={true}
                   style={{ width: "100%", height: "100%" }}
-                />
-              <Plot
-                  data={[{
-                    x: this.props.flightData.map((fd) => fd['dest_abr']),
-                    y: this.props.flightData.map((fd) => fd['pass_sum']),
-                    type: 'bar'
-                  }]}
-                  layout={{
-                    paper_bgcolor: '#F8F9FA',
-                    plot_bgcolor: '#F8F9FA',
-                    autosize: true,
-                    title: 'Airport vs. Passengers (Destination)',
-                    xaxis: {
-                      title: 'Airports'
-                    },
-                    yaxis: {
-                      title: 'Passengers'
-                    }
-                  }}
-                  useResizeHandler={true}
-                  style={{width: "100%", height: "100%"}}
                 />
             </Card> 
             </Col>

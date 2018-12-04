@@ -4,7 +4,7 @@ import { Container } from "reactstrap";
 class FooterPage extends React.Component {
     render() {
         return (
-            <div className="text-center">
+            <div className="text-center" style={{ marginTop: '1em'}}>
                 <Container fluid className="text-white bg-info">
                     <br></br>
                     <br></br>
@@ -12,10 +12,10 @@ class FooterPage extends React.Component {
                     <br></br>
                     <br></br>
                 </Container>
-                <Container fluid className="text-white bg-white">
+                <Container fluid className="text-black bg-white">
                     <br></br>
                     &copy; {new Date().getFullYear()} Copyright:{" "}
-                    <a href="https://github.com/data-science-defiance/airlines-visualization" className="text-white" style={{ textDecoration: "underline"}}>
+                    <a href="https://github.com/data-science-defiance/airlines-visualization" className="text-black" style={{ textDecoration: "underline"}}>
                         Airline Visualization 
                     </a>
                     <br></br>
