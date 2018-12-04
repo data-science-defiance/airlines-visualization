@@ -18,7 +18,7 @@ class FlightStats extends React.Component {
       if (this.props.shortestDist[currAirport] !== undefined) {
         pathCost.unshift(this.props.shortestDist[currAirport].toFixed(2));
       }
-      
+
       currAirport = this.props.shortestPath[currAirport];
     }
     pathCost.shift()
@@ -48,7 +48,7 @@ class FlightStats extends React.Component {
       for (let j = 0; j < year_quarter_indices.length; j++) {
         index = shortestPath[i] + ':' + shortestPath[i + 1] + ':' + year_quarter_indices[j];
         if (this.props.flightPathStats[index] !== undefined) {
-          summaryPath.push(this.props.flightPathStats[index]['market_fare']);
+          summaryPath.push(this.props.flightPathStats[index]['market_fare'].toFixed(2));
         }
         else {
           summaryPath.push(0);
@@ -62,7 +62,7 @@ class FlightStats extends React.Component {
         x: year_quarter_labels,
         y: summaryPath,
         line: {
-            color: this.props.colors[i],
+          color: this.props.colors[i],
         },
         marker: {
           hoverinfo: "\$ y",
@@ -78,7 +78,7 @@ class FlightStats extends React.Component {
         <Container>
           <Row>
             {/* Bar graph: Passengers(y) vs Airports(x) (Origin) */}
-            <Col xs="4">
+            <Col xs="6">
               <Card>
                 <Plot
                   data={[{
@@ -102,7 +102,7 @@ class FlightStats extends React.Component {
               </Card>
             </Col>
             {/* Bar graph: Passengers(y) vs Airports(x) (Destination) */}
-            <Col xs="4">
+            <Col xs="6">
               <Card>
                 <Plot
                   data={[{
@@ -119,14 +119,16 @@ class FlightStats extends React.Component {
                     yaxis: {
                       title: 'Flights'
                     },
-                    
+
                   }}
                   useResizeHandler={true}
                   style={{ width: "100%", height: "100%" }}
                 />
               </Card>
             </Col>
-            <Col xs="4">
+          </Row>
+          <Row>
+            <Col xs="6">
               <Card>
                 <Plot
                   data={[{
@@ -154,11 +156,12 @@ class FlightStats extends React.Component {
             </Col>
           </Row>
           <Row>
-          <Col>
-          <Card>
-          <Plot
-            data={timeSeriesData}
-            layout={{
+
+            <Col xs="12">
+              <Card>
+                <Plot
+                  data={timeSeriesData}
+                  layout={{
                     // autosize: true,
                     title: 'Market Fare of Flight Leg by Year and Quarter',
                     xaxis: {
@@ -170,10 +173,10 @@ class FlightStats extends React.Component {
                   }}
                   useResizeHandler={true}
                   style={{ width: "100%", height: "100%" }}
-          />
-          </Card>
-          
-          </Col>
+                />
+              </Card>
+
+            </Col>
           </Row>
         </Container>
       </div>

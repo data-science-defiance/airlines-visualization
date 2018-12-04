@@ -11,7 +11,6 @@ import Header from './components/Header/Header';
 import * as serviceWorker from './serviceWorker';
 
 import USAFlights from './assets/USAFlights';
-// import TestUSAFlights from './assets/TestUSAFlights';
 
 import Airports from './assets/Airports';
 import FlightPathStats from './assets/FlightPathStats';
