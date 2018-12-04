@@ -26,8 +26,8 @@ class FlightController extends React.Component {
     return (
       <div>
         <Card outline color="success" style={{ marginTop: "2em" }}>
-          <CardHeader tag="h5">Minimum Flight Cost:</CardHeader>
-          <CardBody>
+          <CardHeader tag="h5" className="bg-white">Minimum Flight Cost:</CardHeader>
+          <CardBody className="bg-light">
             <Card>
               <h4 style={{ color: "green", textAlign: "right", margin: "1px 10px 0 0" }}> ${totalCost} </h4>
             </Card>

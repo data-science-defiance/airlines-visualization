@@ -8,11 +8,11 @@ class FooterPage extends React.Component {
                 <Container fluid className="text-white bg-info">
                     <br></br>
                     <br></br>
-                    <h3>A job fills your pocket. Adventure in paradise fills your soul.</h3>
+                    <h3>Jobs fills your pocket. Adventures in paradise fills your soul.</h3>
                     <br></br>
                     <br></br>
                 </Container>
-                <Container fluid className="text-white bg-primary">
+                <Container fluid className="text-white bg-white">
                     <br></br>
                     &copy; {new Date().getFullYear()} Copyright:{" "}
                     <a href="https://github.com/data-science-defiance/airlines-visualization" className="text-white" style={{ textDecoration: "underline"}}>
