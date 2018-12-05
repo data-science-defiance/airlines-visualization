@@ -90,7 +90,7 @@ class FlightDashboard extends React.Component {
 
     // console.log(this.props.flightPathStats);
 
-    const colors = ['#4285F4', '#DB4437', '#F4B400', '#0F9D58'];
+    const colors = ['#4285F4', '#DB4437', '#F4B400', '#0F9D58', '#865FC2', '#F52EF4', '#F58680'];
     const thickness = [1, 2, 3, 4, 5, 6, 7];
 
     return (

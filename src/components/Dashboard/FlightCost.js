@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardHeader, Row, Col } from 'reactstrap';
+import { Card, CardBody, CardHeader, Row, Col, Table } from 'reactstrap';
 import './flight-cost.css';
 
 class FlightCost extends React.Component {
