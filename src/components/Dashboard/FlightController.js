@@ -25,8 +25,8 @@ class FlightController extends React.Component {
     return (
       <div>
         <Card outline color="primary">
-          <CardHeader tag="h4">Plan your flight:</CardHeader>
-          <CardBody>
+          <CardHeader tag="h4" className="bg-white">Plan your flight:</CardHeader>
+          <CardBody className="bg-light">
             <Container>
               <Row className="form-row">
                 <Col xs="7">  

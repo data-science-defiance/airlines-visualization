@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardHeader, Row, Col } from 'reactstrap';
+import { Card, CardBody, CardHeader, Row, Col, Table } from 'reactstrap';
 import './flight-cost.css';
 
 class FlightCost extends React.Component {
@@ -37,8 +37,8 @@ class FlightCost extends React.Component {
     return (
       <div>
         <Card outline color="success" style={{ marginTop: "2em" }}>
-          <CardHeader tag="h5">Minimum Flight Cost:</CardHeader>
-          <CardBody>
+          <CardHeader tag="h5" className="bg-white">Minimum Flight Cost:</CardHeader>
+          <CardBody className="bg-light">
             <Card>
               <Row>
                 <Col xs="6">

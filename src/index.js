@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 
 import FlightDashboard from './components/Dashboard/FlightDashboard';
 import Header from './components/Header/Header';
+import FooterPage from './components/Footer/Footer';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -35,6 +36,12 @@ ReactDOM.render(
         yearsData={Years.sort().reverse()} />,
     document.getElementById('flight-dashboard')
 );
+ReactDOM.render(
+    <FooterPage/>,
+    document.getElementById('footer')
+);
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

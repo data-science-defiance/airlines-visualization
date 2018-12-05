@@ -1,6 +1,6 @@
 import React from 'react';
 import { Map, TileLayer, Circle, Polyline, LayerGroup } from 'react-leaflet';
-import { Container, Row, Col, Card } from 'reactstrap';
+import { Card } from 'reactstrap';
 
 class FlightMap extends React.Component {
 

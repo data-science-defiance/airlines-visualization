@@ -80,7 +80,7 @@ class FlightStats extends React.Component {
         <Container>
           <Row>
             {/* Bar graph: Passengers(y) vs Airports(x) (Origin) */}
-            <Col xs="6">
+            <Col xs="6" className="form-row">
               <Card>
                 <Plot
                   data={[{
@@ -105,7 +105,7 @@ class FlightStats extends React.Component {
               </Card>
             </Col>
             {/* Bar graph: Passengers(y) vs Airports(x) (Destination) */}
-            <Col xs="6">
+            <Col xs="6" className="form-row">
               <Card>
                 <Plot
                   data={[{
@@ -135,7 +135,7 @@ class FlightStats extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs="6">
+            <Col xs="6" className="form-row">
               <Card>
                 <Plot
                   data={[{
