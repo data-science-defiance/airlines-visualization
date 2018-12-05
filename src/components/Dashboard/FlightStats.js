@@ -2,8 +2,6 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import { Container, Row, Col, Card } from 'reactstrap';
 
-import './flight-stats.css';
-
 class FlightStats extends React.Component {
 
   render() {
@@ -78,7 +76,7 @@ class FlightStats extends React.Component {
     return (
       <div>
         <Container>
-          <Row className="flight-stats-row">
+          <Row>
             {/* Bar graph: Passengers(y) vs Airports(x) (Origin) */}
             <Col xs="6">
               <Card>
@@ -90,8 +88,6 @@ class FlightStats extends React.Component {
                     marker:{size:16, color: this.props.colors},
                   }]}
                   layout={{
-                    paper_bgcolor: '#F8F9FA',
-                    plot_bgcolor: '#F8F9FA',
                     autosize: true,
                     title: 'Number of Passengers per Flight Leg',
                     xaxis: {
@@ -117,8 +113,6 @@ class FlightStats extends React.Component {
                     marker:{size:16, color: this.props.colors},
                   }]}
                   layout={{
-                    paper_bgcolor: '#F8F9FA',
-                    plot_bgcolor: '#F8F9FA',
                     autosize: true,
                     title: 'Number of Flights per Flight Leg',
                     xaxis: {
@@ -135,7 +129,7 @@ class FlightStats extends React.Component {
               </Card>
             </Col>
           </Row>
-          <Row className="flight-stats-row">
+          <Row>
             <Col xs="6">
               <Card>
                 <Plot
@@ -148,8 +142,6 @@ class FlightStats extends React.Component {
                     },
                   }]}
                   layout={{
-                    paper_bgcolor: '#F8F9FA',
-                    plot_bgcolor: '#F8F9FA',
                     // autosize: true,
                     title: 'Market Fare of Flight by Flight Leg',
                     // xaxis: {
@@ -165,14 +157,13 @@ class FlightStats extends React.Component {
               </Card>
             </Col>
           </Row>
-          <Row className="flight-stats-row">
+          <Row>
+
             <Col xs="12">
               <Card>
                 <Plot
                   data={timeSeriesData}
                   layout={{
-                    paper_bgcolor: '#F8F9FA',
-                    plot_bgcolor: '#F8F9FA',
                     // autosize: true,
                     title: 'Market Fare of Flight Leg by Year and Quarter',
                     xaxis: {
@@ -186,6 +177,7 @@ class FlightStats extends React.Component {
                   style={{ width: "100%", height: "100%" }}
                 />
               </Card>
+
             </Col>
           </Row>
         </Container>
