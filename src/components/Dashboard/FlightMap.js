@@ -88,27 +88,13 @@ class FlightMap extends React.Component {
     
     const iconTakeoff = new L.Icon({
         iconUrl: require('../../assets/takeoff.svg'),
-        iconRetinaUrl: require('../../assets/takeoff.svg'),
-        iconAnchor: null,
-        popupAnchor: null,
-        shadowUrl: null,
-        shadowSize: null,
-        shadowAnchor: null,
-        iconSize: new L.Point(20, 20),
-        className: 'leaflet-div-icon'
+        iconSize: new L.Point(50, 50),
       
     });
     
     const iconLanding = new L.Icon({
         iconUrl: require('../../assets/arriving.svg'),
-        iconRetinaUrl: require('../../assets/arriving.svg'),
-        iconAnchor: null,
-        popupAnchor: null,
-        shadowUrl: null,
-        shadowSize: null,
-        shadowAnchor: null,
-        iconSize: new L.Point(20, 20),
-        className: 'leaflet-div-icon'
+        iconSize: new L.Point(50, 50),
       
     });
     
@@ -177,6 +163,7 @@ class FlightMap extends React.Component {
           fillColor="#f08080"
           fillOpacity={0.5}>
         </Circle>);
+      }
 
       paths.push(
         <Polyline
@@ -185,7 +172,6 @@ class FlightMap extends React.Component {
           color={colors[colors.length - i - 1]}
           weight={weight}>
         </Polyline>);
-      }
     }
     
     airports.pop();
