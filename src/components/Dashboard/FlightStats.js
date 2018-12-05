@@ -8,24 +8,18 @@ class FlightStats extends React.Component {
     let currAirport = this.props.dest;
 
     const shortestPath = [];
-    const pathCost = [];
 
     console.log(this.props.shortestDist);
 
     while (currAirport !== undefined) {
       shortestPath.unshift(currAirport);
-      console.log(currAirport);
-      if (this.props.shortestDist[currAirport] !== undefined) {
-        pathCost.unshift(this.props.shortestDist[currAirport].toFixed(2));
-      }
-
       currAirport = this.props.shortestPath[currAirport];
     }
-    pathCost.shift()
 
     const flightPath = [];
     const departures = [];
     const passengers = [];
+    const pathCost = [];
 
     const year_quarter_indices = [];
     const year_quarter_labels = [];
@@ -43,6 +37,7 @@ class FlightStats extends React.Component {
       let index = shortestPath[i] + ':' + shortestPath[i + 1] + ':' + this.props.year + ':' + this.props.quarter;
       departures.push(this.props.flightPathStats[index]['departures']);
       passengers.push(this.props.flightPathStats[index]['pass_sum']);
+      pathCost.push(this.props.flightPathStats[index]['market_fare'].toFixed(2));
 
       const summaryPath = [];
       for (let j = 0; j < year_quarter_indices.length; j++) {
@@ -70,8 +65,15 @@ class FlightStats extends React.Component {
       })
     }
 
-    console.log(flightPath);
-    console.log(pathCost);
+    const avgPassengers = [];
+    for (let i = 0; i < passengers.length; i++) {
+      avgPassengers.push(Math.floor(passengers[i] / departures[i] + 0.5));
+    }
+
+    console.log(avgPassengers);
+
+    // console.log(flightPath);
+    // console.log(pathCost);
 
     return (
       <div>
@@ -85,7 +87,7 @@ class FlightStats extends React.Component {
                     x: flightPath,
                     y: passengers,
                     type: 'bar',
-                    marker:{size:16, color: this.props.colors},
+                    marker: { size: 16, color: this.props.colors },
                   }]}
                   layout={{
                     autosize: true,
@@ -110,7 +112,10 @@ class FlightStats extends React.Component {
                     x: flightPath,
                     y: departures,
                     type: 'bar',
-                    marker:{size:16, color: this.props.colors},
+                    marker: {
+                      size: 16,
+                      color: this.props.colors
+                    },
                   }]}
                   layout={{
                     autosize: true,
@@ -142,14 +147,34 @@ class FlightStats extends React.Component {
                     },
                   }]}
                   layout={{
-                    // autosize: true,
                     title: 'Market Fare of Flight by Flight Leg',
-                    // xaxis: {
-                    //   title: 'Flight Leg'
-                    // },
-                    // yaxis: {
-                    //   title: 'Flights'
-                    // }
+                  }}
+                  useResizeHandler={true}
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </Card>
+            </Col>
+            <Col xs="6">
+              <Card>
+                <Plot
+                  data={[{
+                    x: flightPath,
+                    y: avgPassengers,
+                    type: 'bar',
+                    marker: {
+                      size: 16,
+                      color: this.props.colors,
+                    },
+                  }]}
+                  layout={{
+                    autosize: true,
+                    title: 'Average Number of Passengers per Flight Leg',
+                    xaxis: {
+                      title: 'Flight Leg'
+                    },
+                    yaxis: {
+                      title: 'Average Number of Passengers'
+                    }
                   }}
                   useResizeHandler={true}
                   style={{ width: "100%", height: "100%" }}
