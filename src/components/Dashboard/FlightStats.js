@@ -142,6 +142,7 @@ class FlightStats extends React.Component {
                     labels: flightPath,
                     values: pathCost,
                     type: 'pie',
+                    textinfo: 'value',
                     marker: {
                       colors: this.props.colors,
                     },

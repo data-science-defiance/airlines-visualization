@@ -11,18 +11,18 @@ class FlightMap extends React.Component {
     const maxDepartures = Math.max(...this.props.flightData.map((fd) => {
       return fd['departures'];
     }));
-    
+
     const iconTakeoff = new L.Icon({
-        iconUrl: require('../../assets/takeoff.svg'),
-        iconRetinaUrl: require('../../assets/takeoff.svg'),
-        iconAnchor: null,
-        popupAnchor: null,
-        shadowUrl: null,
-        shadowSize: null,
-        shadowAnchor: null,
-        iconSize: new L.Point(20, 20),
-        className: 'leaflet-div-icon'
-      
+      iconUrl: require('../../assets/takeoff.svg'),
+      iconRetinaUrl: require('../../assets/takeoff.svg'),
+      iconAnchor: null,
+      popupAnchor: null,
+      shadowUrl: null,
+      shadowSize: null,
+      shadowAnchor: null,
+      iconSize: new L.Point(20, 20),
+      className: 'leaflet-div-icon'
+
     });
 
     for (let i = 0; i < this.props.flightData.length; i++) {
@@ -36,7 +36,7 @@ class FlightMap extends React.Component {
         <Marker
           key={i * 2}
           position={destCoordinate}
-          icon={ iconTakeoff }
+          icon={iconTakeoff}
         >
         </Marker>);
 
@@ -85,19 +85,19 @@ class FlightMap extends React.Component {
 
     const airports = [];
     const paths = [];
-    
+
     const iconTakeoff = new L.Icon({
-        iconUrl: require('../../assets/takeoff.svg'),
-        iconSize: new L.Point(50, 50),
-      
+      iconUrl: require('../../assets/takeoff.svg'),
+      iconSize: new L.Point(50, 50),
+
     });
-    
+
     const iconLanding = new L.Icon({
-        iconUrl: require('../../assets/arriving.svg'),
-        iconSize: new L.Point(50, 50),
-      
+      iconUrl: require('../../assets/arriving.svg'),
+      iconSize: new L.Point(50, 50),
+
     });
-    
+
     console.log(iconTakeoff);
 
     // const maxPassengers = Math.max(...this.props.flightData.map((fd) => {
@@ -117,8 +117,8 @@ class FlightMap extends React.Component {
       <Marker
         key={currAirport}
         position={currAirportCoordinate}
-        icon={ iconLanding }
-        >
+        icon={iconLanding}
+      >
       </Marker>);
 
     const colors = [];
@@ -144,25 +144,25 @@ class FlightMap extends React.Component {
       let weight;
       let string = prevAirport + ':' + currAirport + ':' + this.props.year + ':' + this.props.quarter;
       console.log(flightPath[string].pass_sum);
-      if(flightPath[string].pass_sum < 250) { weight = 70; }
-      if(flightPath[string].pass_sum > 250) { weight = 60; }
-      if(flightPath[string].pass_sum > 1000) { weight = 50; }
-      if(flightPath[string].pass_sum > 4000) { weight = 40; }
-      if(flightPath[string].pass_sum > 16000) { weight = 30; }
-      if(flightPath[string].pass_sum > 64000) { weight = 20; }
+      if (flightPath[string].pass_sum < 250) { weight = 70; }
+      if (flightPath[string].pass_sum > 250) { weight = 60; }
+      if (flightPath[string].pass_sum > 1000) { weight = 50; }
+      if (flightPath[string].pass_sum > 4000) { weight = 40; }
+      if (flightPath[string].pass_sum > 16000) { weight = 30; }
+      if (flightPath[string].pass_sum > 64000) { weight = 20; }
       else { weight = 10; }
       //const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25);
 
-      if(i != airports.length - 1) {     
-      airports.push(
-        <Circle
-          key={currAirport}
-          center={currAirportCoordinate}
-          radius={10000}
-          color="green"
-          fillColor="#f08080"
-          fillOpacity={0.5}>
-        </Circle>);
+      if (i !== airports.length - 1) {
+        airports.push(
+          <Circle
+            key={currAirport}
+            center={currAirportCoordinate}
+            radius={10000}
+            color="green"
+            fillColor="#f08080"
+            fillOpacity={0.5}>
+          </Circle>);
       }
 
       paths.push(
@@ -173,14 +173,14 @@ class FlightMap extends React.Component {
           weight={weight}>
         </Polyline>);
     }
-    
+
     airports.pop();
     airports.push(
       <Marker
         key={currAirport}
         position={currAirportCoordinate}
-        icon={ iconTakeoff }
-        >
+        icon={iconTakeoff}
+      >
       </Marker>);
 
     return { 'airports': airports, 'paths': paths };

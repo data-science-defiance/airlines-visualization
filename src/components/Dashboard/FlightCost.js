@@ -8,16 +8,20 @@ class FlightCost extends React.Component {
     let currAirport = this.props.dest;
 
     const shortestPath = [];
+
+    while (currAirport !== undefined) {
+      shortestPath.unshift(currAirport);
+      currAirport = this.props.shortestPath[currAirport];
+    }
+
     const pathCost = [];
     let totalCost = 0;
 
-    while (this.props.shortestPath[currAirport] !== undefined) {
-      shortestPath.unshift(currAirport);
-      pathCost.unshift(this.props.shortestDist[currAirport].toFixed(2));
-      totalCost += this.props.shortestDist[currAirport];
-      currAirport = this.props.shortestPath[currAirport];
+    for (let i = 0; i < shortestPath.length - 1; i++) {
+      let index = shortestPath[i] + ':' + shortestPath[i + 1] + ':' + this.props.year + ':' + this.props.quarter;
+      pathCost.push(this.props.flightPathStats[index]['market_fare'].toFixed(2));
+      totalCost += this.props.flightPathStats[index]['market_fare'];
     }
-    shortestPath.unshift(this.props.origin)
 
     totalCost = totalCost.toFixed(2);
 

@@ -118,6 +118,9 @@ class FlightDashboard extends React.Component {
               <FlightCost
                 origin={this.state.origin}
                 dest={this.state.dest}
+                year={this.state.year}
+                quarter={this.state.quarter}
+                flightPathStats={this.props.flightPathStats}
                 shortestPath={dijkstraResult['path']}
                 shortestDist={dijkstraResult['dist']}
                 colors={colors}>
@@ -127,13 +130,13 @@ class FlightDashboard extends React.Component {
               <FlightMap
                 origin={this.state.origin}
                 dest={this.state.dest}
+                year={this.state.year}
+                quarter={this.state.quarter}
                 flightData={flightData}
                 airportsData={this.props.airportsData}
                 shortestPath={dijkstraResult['path']}
                 colors={colors}
                 thickness={thickness}
-                year={this.state.year}
-                quarter={this.state.quarter}
                 flightPathStats={this.props.flightPathStats}>
               </FlightMap>
             </Col>
