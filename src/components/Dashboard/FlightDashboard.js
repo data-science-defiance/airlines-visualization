@@ -119,7 +119,8 @@ class FlightDashboard extends React.Component {
                 origin={this.state.origin}
                 dest={this.state.dest}
                 shortestPath={dijkstraResult['path']}
-                shortestDist={dijkstraResult['dist']}>
+                shortestDist={dijkstraResult['dist']}
+                colors={colors}>
               </FlightCost>
             </Col>
             <Col xs="8">
