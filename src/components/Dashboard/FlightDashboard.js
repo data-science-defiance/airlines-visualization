@@ -90,7 +90,8 @@ class FlightDashboard extends React.Component {
 
     // console.log(this.props.flightPathStats);
 
-    const colors = ['#4285F4', '#DB4437', '#F4B400', '#0F9D58']
+    const colors = ['#4285F4', '#DB4437', '#F4B400', '#0F9D58'];
+    const thickness = [1, 2, 3, 4, 5, 6, 7];
 
     return (
       <div>
@@ -128,7 +129,11 @@ class FlightDashboard extends React.Component {
                 flightData={flightData}
                 airportsData={this.props.airportsData}
                 shortestPath={dijkstraResult['path']}
-                colors={colors}>
+                colors={colors}
+                thickness={thickness}
+                year={this.state.year}
+                quarter={this.state.quarter}
+                flightPathStats={this.props.flightPathStats}>
               </FlightMap>
             </Col>
           </Row>
