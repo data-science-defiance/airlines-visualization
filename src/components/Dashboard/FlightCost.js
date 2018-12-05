@@ -24,7 +24,11 @@ class FlightCost extends React.Component {
     const flightList = []
     for (let i = 0; i < shortestPath.length - 1; i++) {
       flightList.push(
-        <li key={i}>{shortestPath[i] + " to " + shortestPath[i + 1] + " | " + pathCost[i]}</li>
+        <tr style={{backgroundColor: this.props.colors[i] + "aa"}}>
+          <td>{shortestPath[i]}</td>
+          <td>{shortestPath[i + 1]}</td>
+          <td>{pathCost[i]}</td>
+        </tr>
       );
     }
     // const cardType = this.props.flightData.length ? "success" : "danger";
@@ -54,7 +58,16 @@ class FlightCost extends React.Component {
           <CardBody>
             <Card>
               <CardBody>
-                <ul>{flightList}</ul>
+                <Table hover>
+                  <thead>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Cost</th>
+                  </thead>
+                  <tbody>
+                    {flightList}
+                  </tbody>
+                </Table>
               </CardBody>
             </Card>
           </CardBody>
