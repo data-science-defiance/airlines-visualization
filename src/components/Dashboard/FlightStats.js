@@ -8,24 +8,18 @@ class FlightStats extends React.Component {
     let currAirport = this.props.dest;
 
     const shortestPath = [];
-    const pathCost = [];
 
     console.log(this.props.shortestDist);
 
     while (currAirport !== undefined) {
       shortestPath.unshift(currAirport);
-      console.log(currAirport);
-      if (this.props.shortestDist[currAirport] !== undefined) {
-        pathCost.unshift(this.props.shortestDist[currAirport].toFixed(2));
-      }
-
       currAirport = this.props.shortestPath[currAirport];
     }
-    pathCost.shift()
 
     const flightPath = [];
     const departures = [];
     const passengers = [];
+    const pathCost = [];
 
     const year_quarter_indices = [];
     const year_quarter_labels = [];
@@ -43,6 +37,7 @@ class FlightStats extends React.Component {
       let index = shortestPath[i] + ':' + shortestPath[i + 1] + ':' + this.props.year + ':' + this.props.quarter;
       departures.push(this.props.flightPathStats[index]['departures']);
       passengers.push(this.props.flightPathStats[index]['pass_sum']);
+      pathCost.push(this.props.flightPathStats[index]['market_fare']);
 
       const summaryPath = [];
       for (let j = 0; j < year_quarter_indices.length; j++) {
