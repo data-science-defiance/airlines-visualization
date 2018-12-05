@@ -1,5 +1,6 @@
 import React from 'react';
-import { Map, TileLayer, Circle, Polyline, LayerGroup } from 'react-leaflet';
+import L from 'leaflet';
+import { Map, TileLayer, Circle, Polyline, LayerGroup, Marker } from 'react-leaflet';
 import { Card } from 'reactstrap';
 
 class FlightMap extends React.Component {
@@ -10,6 +11,19 @@ class FlightMap extends React.Component {
     const maxDepartures = Math.max(...this.props.flightData.map((fd) => {
       return fd['departures'];
     }));
+    
+    const iconTakeoff = new L.Icon({
+        iconUrl: require('../../assets/takeoff.svg'),
+        iconRetinaUrl: require('../../assets/takeoff.svg'),
+        iconAnchor: null,
+        popupAnchor: null,
+        shadowUrl: null,
+        shadowSize: null,
+        shadowAnchor: null,
+        iconSize: new L.Point(20, 20),
+        className: 'leaflet-div-icon'
+      
+    });
 
     for (let i = 0; i < this.props.flightData.length; i++) {
       const flightPath = this.props.flightData[i];
@@ -19,14 +33,12 @@ class FlightMap extends React.Component {
       const radius = 10000 * (flightPath['departures'] / maxDepartures + 1);
 
       airports.push(
-        <Circle
+        <Marker
           key={i * 2}
-          center={originCoordinate}
-          radius={radius}
-          color="red"
-          fillColor="#f08080"
-          fillOpacity={0.5}>
-        </Circle>);
+          position={destCoordinate}
+          icon={ iconTakeoff }
+        >
+        </Marker>);
 
       airports.push(
         <Circle
@@ -73,6 +85,34 @@ class FlightMap extends React.Component {
 
     const airports = [];
     const paths = [];
+    
+    const iconTakeoff = new L.Icon({
+        iconUrl: require('../../assets/takeoff.svg'),
+        iconRetinaUrl: require('../../assets/takeoff.svg'),
+        iconAnchor: null,
+        popupAnchor: null,
+        shadowUrl: null,
+        shadowSize: null,
+        shadowAnchor: null,
+        iconSize: new L.Point(20, 20),
+        className: 'leaflet-div-icon'
+      
+    });
+    
+    const iconLanding = new L.Icon({
+        iconUrl: require('../../assets/arriving.svg'),
+        iconRetinaUrl: require('../../assets/arriving.svg'),
+        iconAnchor: null,
+        popupAnchor: null,
+        shadowUrl: null,
+        shadowSize: null,
+        shadowAnchor: null,
+        iconSize: new L.Point(20, 20),
+        className: 'leaflet-div-icon'
+      
+    });
+    
+    console.log(iconTakeoff);
 
     // const maxPassengers = Math.max(...this.props.flightData.map((fd) => {
     //   return fd['pass_sum'];
@@ -88,14 +128,12 @@ class FlightMap extends React.Component {
     ];
 
     airports.push(
-      <Circle
+      <Marker
         key={currAirport}
-        center={currAirportCoordinate}
-        radius={10000}
-        color="red"
-        fillColor="#f08080"
-        fillOpacity={0.5}>
-      </Circle>);
+        position={currAirportCoordinate}
+        icon={ iconLanding }
+        >
+      </Marker>);
 
     const colors = [];
 
@@ -128,7 +166,8 @@ class FlightMap extends React.Component {
       if(flightPath[string].pass_sum > 64000) { weight = 20; }
       else { weight = 10; }
       //const weight = 2 * (flightPath['pass_sum'] / maxPassengers + 0.25);
-       
+
+      if(i != airports.length - 1) {     
       airports.push(
         <Circle
           key={currAirport}
@@ -146,7 +185,17 @@ class FlightMap extends React.Component {
           color={colors[colors.length - i - 1]}
           weight={weight}>
         </Polyline>);
+      }
     }
+    
+    airports.pop();
+    airports.push(
+      <Marker
+        key={currAirport}
+        position={currAirportCoordinate}
+        icon={ iconTakeoff }
+        >
+      </Marker>);
 
     return { 'airports': airports, 'paths': paths };
   }
