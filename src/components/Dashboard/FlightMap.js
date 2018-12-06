@@ -1,6 +1,6 @@
 import React from 'react';
 import L from 'leaflet';
-import { Map, TileLayer, Circle, Polyline, LayerGroup, Marker } from 'react-leaflet';
+import { Map, TileLayer, Circle, Polyline, LayerGroup, Marker, Popup } from 'react-leaflet';
 import { Card } from 'reactstrap';
 
 class FlightMap extends React.Component {
@@ -119,6 +119,7 @@ class FlightMap extends React.Component {
         position={currAirportCoordinate}
         icon={iconLanding}
       >
+        <Popup>Airport Code: {currAirport}</Popup>
       </Marker>);
 
     const colors = [];
@@ -171,6 +172,10 @@ class FlightMap extends React.Component {
           positions={[prevAirportCoordinate, currAirportCoordinate]}
           color={colors[colors.length - i - 1]}
           weight={weight}>
+          <Popup>Origin of Leg: {currAirport}
+            <br/>Destination of Leg: {prevAirport}
+            <br/>Number of Passengers: {flightPath[string].pass_sum.toLocaleString()}
+          </Popup>
         </Polyline>);
     }
 
@@ -181,6 +186,7 @@ class FlightMap extends React.Component {
         position={currAirportCoordinate}
         icon={iconTakeoff}
       >
+        <Popup>Airport Code: {currAirport}</Popup>
       </Marker>);
 
     return { 'airports': airports, 'paths': paths };
